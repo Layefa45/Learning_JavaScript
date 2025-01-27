@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Practice Exercise 10.6</title>
+    </head>
+    <body>
+        <h1>Welcome to this Exercise</h1>
+        <p class="two">I am </p>
+        <p class="two">You are</p>
+        <p class="two">He is  </p>
+        <p class="two">She is  </p>
+        <script>
+            let graEles = document.querySelectorAll('.two');
+            console.log(graEles);
+            Array.from(graEles).forEach(e => console.log(e));
+            neww = [];
+            for (let i = 0; i<graEles.length; i++) {
+                neww.push(graEles[i]);
+                console.log(neww[i]);
+            }
+            graEles.forEach(e => console.log(e));
+        </script>
+    </body>
+</html>

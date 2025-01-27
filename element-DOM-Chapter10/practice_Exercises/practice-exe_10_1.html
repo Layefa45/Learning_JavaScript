@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset= 'UTF-8' name="viewport" content="width=device-width, initial-scale= 1.0">
+        <title>Practice Exercise 10.1</title>
+    </head>
+    <body>
+         <div class="main">
+            <div>
+                <ul>
+                    <li>One</li>
+                    <li>Two</li>
+                    <li>Three</li>
+                </ul>
+            </div>
+            <div>Blue</div>
+            <div>green</div>
+            <div>Yellow</div>
+            <div>Purple</div>
+        </div> 
+        
+        <p id="greeting">HI!</p>
+          
+        <script>
+            let newUpdate = document.body.children.greeting;
+            let us = newUpdate.innerText = 'Bye!';
+            //newUpdate.innerText = '<p> Hello! </p> ';
+            us.innerHTML = '<b> Bye!! </b>';
+        </script>
+    </body>
+</html>

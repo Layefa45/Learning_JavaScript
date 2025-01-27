@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width">
+        <title>Element Clicker Handler</title>
+    </head>
+    <body>
+        
+        <div class='one' onclick="alert('Ouch! Stop it!!!')" > Don't click Me!!</div>
+
+        <div class="one" onclick="stop() "> Do not Click!</div>
+
+        <div class="two" id="twoc">Go Ahead and click!!</div>
+
+        <div class="four"> Example</div>
+        <div class="four"> Example1</div>
+        <div class="four"> Example2</div>
+        <div class="four"> Example3</div>
+
+        <a href="domAndThis.html" target="_blank">Next Page</a>
+
+        <script>
+            function stop() {
+                alert('Stop it');
+            }
+            let elements = document.getElementsByClassName('four');
+            for (let i = 0; i < elements.length; i++ ) {
+                elements[i].onclick = function () { alert(`${i}`)}
+            }
+        </script>
+        
+    </body>
+</html>

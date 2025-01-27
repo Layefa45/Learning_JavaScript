@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Practice Exercise 10.4</title>
+    </head>
+    <body>
+        <h1>Welcome to this exercise</h1>
+        <p class="check">My name is Abulu Tare Jennifer, I have been learning Javascript for a few months now, overall it's not so bad.</p>
+        <hr>
+        <h2 class="check">Section Two</h2>
+        <ul>
+            <li>Singing when not studying</li>
+            <li class="check">Novels when not Javascript-ing</li>
+        </ul>
+        <article class="check">
+            What's up party people, Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse expedita eius eveniet quas molestiae sed architecto eaque necessitatibus, magni quae quos optio hic magnam laborum fugiat distinctio nobis facilis nesciunt!
+        </article>
+
+        <script>
+           
+            let store = document.getElementsByClassName('check');
+            console.log(store);
+           
+            let some = store[3];
+            console.log(some);
+
+            // I COULDN'T USE THE HTMLCOLLECTION VARIABLE AS AN ARRAY THEN I DID THIS 
+
+            let arr = [];
+            for (let i = 0; i < store.length; i++) {
+                arr.push(store[i]);
+            }
+            console.log(arr);
+
+            // DECIDED TO TEST OUT THIS FUNCTIONALITY 
+
+            let aw = arr.map(element => element.innerText);
+            console.log(aw);
+        </script>
+    </body>
+</html>

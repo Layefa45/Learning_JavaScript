@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>JavaScript Programs</title>
+    </head>
+    <body>
+        <h1> JAVASCRIPT BEGINS </h1>
+        <p> Hello Learner </p>
+        <input onchange='go(this)' title="Form"/>
+        <div id="example" class="test-class">Hello, world!</div>
+
+        <a href="traverse.html"  target="_blank">  Traverse html page </a>
+        <br>
+        <br>
+        <a href="element-DOM-Chapter10\elementClickHandler.html" target="_blank"> Visit Exercise 10.5</a>
+        
+        
+        <script type="text/javascript" src="app.js"> 
+            function go(e) {
+                eval (e.value);
+                document.body.style.backgroundColor = "pink";
+
+            }
+            document.body.style.backgroundColor = "pink";
+
+            let element = document.getElementById('example');
+
+            // Using console.log()
+            console.log(element);
+            // Output: <div id="example" class="test-class">Hello, world!</div>
+
+            // Using console.dir()
+            console.dir(element);
+            // Output: An interactive, expandable object with properties like id, className, innerHTML, style, etc.
+
+        </script>
+    
+    </body>
+</html>
