@@ -8,6 +8,7 @@
                 height: 30px;
                 width: 30px;
                 background-color: white;
+                margin: 10px;
             }
         </style>
     </head>
@@ -26,8 +27,15 @@
 
             function rainbowify () {
                 let divs = document.getElementsByTagName('div');
+
+                
                 for (let i = 0; i < divs.length; i++) {
-                    divs[i].style.backgroundColor = divs[i].id;
+                    //divs[i].style.backgroundColor = divs[i].id;
+                    if (divs[i].style.backgroundColor === divs[i].id) {
+                        divs[i].style.backgroundColor = 'white';
+                    } else {
+                        divs[i].style.backgroundColor = divs[i].id;
+                    }   
                 }
             }
 
