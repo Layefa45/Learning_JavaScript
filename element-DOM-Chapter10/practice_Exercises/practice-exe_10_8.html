@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Practice Exercise 10.8</title>
+    </head>
+    <body>
+        <div id="message"></div>
+        <div id="output"></div>
+
+
+        <script>
+            const message = document.getElementById('message');
+            const myArray = ['Laurence', 'John', 'Peter', 'James', 'Paul', 'Mary', 'Jane', 'Lucy', 'Joseph', 'David', 'Daniel', 'Isaac', 'Rebecca', 'Sarah', 'Ruth', 'Esther', 'Hannah', 'Deborah', 'Miriam', 'Martha', 'Lydia'];
+            build();
+
+            function build() {
+                let html = '<h1>My Friends Table</h1> <table>';
+                    myArray.forEach((name, index) => {
+                        html += `<tr class='box' data-row=${index + 1} data-name=${name} onclick='getData(this)' >
+                            <td> ${name}</td>
+                            <td> ${index + 1}</td>
+                            </tr>`;
+                    });
+                    html += '</table>';
+                    document.getElementById('output').innerHTML = html;
+            }
+
+            function getData(element) {
+                let temp = element.getAttribute('data-row');
+                let tempName = element.getAttribute('data-name');
+                message.innerHTML = `${tempName} is in row #${temp}`;
+            } 
+
+
+            // ANOTHER METHOD FROM CHATGPT
+            /*const names = ['John', 'Alice', 'Bob', 'Charlie'];
+            function builds() {
+                const html = document.createElement('table');
+                names.forEach((name, index) => {
+                    const tr = document.createElement('tr');
+                    const td = document.createElement('td');
+                    td.textContent = name;
+                    tr.appendChild(td);
+                    tr.setAttribute('data-row', index);
+                    tr.setAttribute('data-name', name);
+                    td.classList.add('box');
+                    tr.setAttribute('onclick', getData(this));
+                    html.appendChild(tr);
+                })
+                output.appendChild(html);
+            }
+
+            function getData (row) {
+                const rowIndex = row.getAttribute('data-row');
+                const rowName = row.getAttribute('data-name');
+                message.textContent = `Row index: ${rowIndex}, Name: ${rowName}`;
+            }
+            builds(); */
+        </script>
+    </body>
+</html>
