@@ -25,7 +25,7 @@
             // RAINBOW FUNCTION 
 
             function rainbowify () {
-                let divs = document.getElementsbyTagName('div');
+                let divs = document.getElementsByTagName('div');
                 for (let i = 0; i < divs.length; i++) {
                     divs[i].style.backgroundColor = divs[i].id;
                 }
@@ -48,7 +48,7 @@
         <div id='indigo'></div>
         <div id='violet'></div>
 
-        <button onclick="rainbowify">Make me a rainbow</button>
+        <button onclick="rainbowify()">Make me a rainbow</button>
 
 
 
