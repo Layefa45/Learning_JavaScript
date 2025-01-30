@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Manipulating Attributes</title>
+        <style>
+            div {
+                height: 100px;
+                width: 100px;
+                background-color: yellow;
+            }
+
+            .circle{
+                border-radius: 50%;
+            }
+
+        </style>
+    </head>
+    <body>
+        <h1>Manipulating Attributes</h1>
+        <p>Changing the attributes of an element</p>
+        <div id="shape" class="square"></div>
+        <button onclick="changeAttr()">Change Attributes</button>
+
+        <script>
+            function changeAttr() {
+                let el = document.getElementById('shape');
+                el.setAttribute('style', 'background-color: red; border: 2px solid black');
+                el.setAttribute('id', 'new');
+                el.setAttribute('class', 'circle');
+            }
+        </script>
+    </body>
+</html>

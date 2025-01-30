@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Changing The Classes Of An Element</title>
+
+        <style>
+            .hide{
+                display: none;
+            }
+            .square {
+                height: 30px;
+                width: 30px;
+                background-color: yellow;
+                
+            }
+            .square.blue {
+                background-color: blue;
+            }
+
+            .red {
+                height: 100px;
+                width: 100px;
+                background-color: red;
+            }
+            .red.pink{
+                background-color: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Changing The Classes Of An Element</h1>
+        <p>Adding a class to an element </p>
+        <div id="shape" class="square blue"></div>
+        <button onclick="disappear()">Disappear</button>
+
+
+
+        <h2>Removing a class from an element</h2>
+        <div id="size" class="red pink"></div>
+        <button onclick="change()">Change</button>
+
+
+        <h3>Toggling Classes </h3>
+        <div id="toggle" class="red"></div>
+        <button onclick="changeVisibility()"> Try Me!</button>
+
+        <br>
+
+        <a href="manipulatingAttributes.html" target="_blank"> Manipulating Attributes</a>
+        <script>
+            function disappear() {
+                let shape = document.getElementById('shape').classList.add('hide');
+            }
+
+            // REMOVING A CLASS FROM AN ELEMENT 
+            function change() {
+                document.getElementById('size').classList.remove('pink');
+            }
+
+            // TOGGLING CLASSES
+
+            function changeVisibility() {
+                let toggle = document.getElementById('toggle').classList.toggle('hide');
+            }
+
+        </script>
+    </body>
+</html>
