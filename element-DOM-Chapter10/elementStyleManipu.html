@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Manipulating Element Styles</title>
+        <style>
+            div {
+                height: 30px;
+                width: 30px;
+                background-color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            function toggleDisplay() {
+                let p = document.getElementById('magic');
+                if (p.style.display === 'none') {
+                    p.style.display = 'block';
+                } else {
+                    p.style.display = 'none';
+                }
+            }
+
+            // RAINBOW FUNCTION 
+
+            function rainbowify () {
+                let divs = document.getElementsbyTagName('div');
+                for (let i = 0; i < divs.length; i++) {
+                    divs[i].style.backgroundColor = divs[i].id;
+                }
+            }
+
+        </script>
+
+        <p id="magic">I might disappear and appear</p>
+        <button onclick="toggleDisplay()">Magic!</button>
+
+
+
+
+                    <!-- RAINBOW STYLING -->
+        <div id='red'></div>
+        <div id='orange'></div>
+        <div id='yellow'></div>
+        <div id='green'></div>
+        <div id='blue'></div>
+        <div id='indigo'></div>
+        <div id='violet'></div>
+
+        <button onclick="rainbowify">Make me a rainbow</button>
+
+
+
+
+    </body>
+</html>
