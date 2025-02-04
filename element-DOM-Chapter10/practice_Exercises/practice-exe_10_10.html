@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset='UTF-8' name="viewport" content="width=device-width"/>
+        <title>Practice Exercise 10.10</title>
+    </head>
+    <body>
+        <div id="message">Complete JavaScript Course</div>
+        <br>
+        <br>
+        <div>
+            <label for="addItems">Input Box</label>
+            <input type="text" id="addItems" >
+
+            <input type="button" id="addNew" value="Add to List">
+
+        </div>
+
+        <div id="output">
+            <h1>Shopping List</h1>
+            <ol id="sList"></ol>
+        </div>
+
+        <script>
+            let btn = document.getElementById('addNew').addEventListener('click', addOne);
+
+            function addOne() {            
+                let addItems1 = document.getElementById('addItems').value;
+
+                let newEle = document.createElement('li');
+                newEle.textContent = addItems1;
+                sList.appendChild(newEle);
+
+            }
+        </script>
+    </body>
+</html>

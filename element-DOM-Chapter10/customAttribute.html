@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width"/>
+        <title>Custom Attributes</title>
+        <style>
+            body{
+                font-family: Arial, sans-serif;
+            }
+            .product{
+                cursor: pointer;
+                padding: 10px ;
+                border: 1px solid #ccc;
+                margin: 5px;
+            }
+            #details{
+                margin-top: 20px;
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h2>Product List</h2>
+
+        <ul>
+            <li class="product" data-id="101" data-price="5000" data-stock="yes">Laptop</li>
+            <li class="product" data-id="102" data-price="1500" data-stock="no">SmartPhone</li>
+            <li class="product" data-id="103" data-price="300" data-stock="yes">HeadPhone</li>
+        </ul>
+
+        <div id="details">Click a product to see details</div>
+
+        <script>
+            const products = document.querySelectorAll('.product');
+            const details = document.getElementById('details');
+
+            // ADD CLICK EVENT TO EACH PRODUCT 
+
+            products.forEach(product => {
+                product.addEventListener('click', () => {
+
+                    // RETRIEVE DATA ATTRIBUTES
+
+                    const name = product.textContent;
+                    const price = product.dataset.price;
+                    const stock = product.dataset.stock === 'yes'? 'in stock' : 'out of stock';
+
+                    // DISPLAY PRODUCT DETAILS
+
+                    details.textContent = `Product: ${name} | Price: $${price} | Availability: ${stock}`;
+                });
+            });
+        </script>
+    </body>
+</html>

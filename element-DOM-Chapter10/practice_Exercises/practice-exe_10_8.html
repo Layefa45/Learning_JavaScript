@@ -10,7 +10,7 @@
 
 
         <script>
-            const message = document.getElementById('message');
+            /*const message = document.getElementById('message');
             const myArray = ['Laurence', 'John', 'Peter', 'James', 'Paul', 'Mary', 'Jane', 'Lucy', 'Joseph', 'David', 'Daniel', 'Isaac', 'Rebecca', 'Sarah', 'Ruth', 'Esther', 'Hannah', 'Deborah', 'Miriam', 'Martha', 'Lydia'];
             build();
 
@@ -30,11 +30,11 @@
                 let temp = element.getAttribute('data-row');
                 let tempName = element.getAttribute('data-name');
                 message.innerHTML = `${tempName} is in row #${temp}`;
-            } 
+            } */
 
 
             // ANOTHER METHOD FROM CHATGPT
-            /*const names = ['John', 'Alice', 'Bob', 'Charlie'];
+            const names = ['John', 'Alice', 'Bob', 'Charlie'];
             function builds() {
                 const html = document.createElement('table');
                 names.forEach((name, index) => {
@@ -45,18 +45,18 @@
                     tr.setAttribute('data-row', index);
                     tr.setAttribute('data-name', name);
                     td.classList.add('box');
-                    tr.setAttribute('onclick', getData(this));
+                    tr.setAttribute('onclick', "getDatas(this)");
                     html.appendChild(tr);
-                })
+                });
                 output.appendChild(html);
             }
 
-            function getData (row) {
+            function getDatas (row) {
                 const rowIndex = row.getAttribute('data-row');
                 const rowName = row.getAttribute('data-name');
                 message.textContent = `Row index: ${rowIndex}, Name: ${rowName}`;
             }
-            builds(); */
+            builds(); 
         </script>
     </body>
 </html>
