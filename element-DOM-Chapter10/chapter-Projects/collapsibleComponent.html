@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>Collapsible Accordion Component</title>
+        <style>
+            .active { display: block !important;}
+            .myText {display: none;}
+            .title {
+                font-size: 1.5em;
+                background-color: #ddd;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="title">Title #1</div>
+            <div class="myText">Just some Text #1</div>
+            <div class="title">Title #2</div>
+            <div class="myText">Just some Text #2</div>
+            <div class="title">Title #3</div>
+            <div class="myText">Just some Text #3</div>
+        </div>
+
+        <script>
+            let titleClass = document.body.querySelectorAll(".title");
+            titleClass.forEach((title) => {
+                title.addEventListener('click', () => {
+                    title.nextElementSibling.classList.toggle('active');
+                    console.log(title.nextElementSibling);
+                });
+            });
+            let myTextClass = document.body.querySelectorAll("myText");
+
+            
+        </script> 
+
+        <!-- <script>
+            const menus = document.querySelectorAll(".title");
+            const openText = document.querySelectorAll(".myText");
+            menus.forEach((el) => {
+                el.addEventListener("click", (e) => {
+                    console.log(el.nextElementSibling);
+                    remover();
+                    el.nextElementSibling.classList.toggle("active")
+                })
+            })
+            function remover() {
+                openText.forEach((ele) => {
+                ele.classList.remove("active");
+                })
+            }
+            </script> -->
+    </body>
+</html>

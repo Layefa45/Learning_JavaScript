@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width">
+        <title>Interactive Voting System</title>
+    </head>
+    <body>
+        <div id="message">Complete JavaScript Course</div>
+        <div>
+            <input type="text" id="addFriend">
+            <input type="button" id="addNew" value="Add Friend">
+        </div>
+        <table id="output"></table>
+
+
+        <script>
+            // CREATING AN ARRAY OF PEOPLE NAMES 
+            myArray = ['Tare', 'Lorraine', 'Sophia', 'Jenny', 'Serena', 'Best'];
+
+            // SELECTING PAGE ELEMENTS 
+            let addFriend = document.getElementById('addFriend');
+            let addNew = document.getElementById('addNew');
+
+            //ADDING EVENT LISTENER TO THE ADDNEW BUTTON 
+            addNew.addEventListener('click', () => {
+                let inputValue = addFriend.value;
+                myArray.push(inputValue);
+                main(inputValue, myArray.length, 0);
+            });
+
+
+            myArray.forEach( (item, index, counter) => { 
+
+                main(item, index, 0);
+                //console.log(index, item);
+
+
+                //TEST OUT A SETTIMEOUT FUNCTION 
+
+                // setTimeout(() => {
+                //     console.log(item, index)
+                // }, 3000)
+            });
+
+            function main (item, index, counter) {
+                let tr = document.createElement('tr');
+                let td = document.createElement('td');  
+                let td1 = document.createElement('td');
+                let td2 = document.createElement('td');
+
+                td.textContent = index + 1;
+                td1.textContent = item;
+                td2.textContent = counter;
+
+                tr.appendChild(td);
+                tr.appendChild(td1);
+                tr.appendChild(td2);
+
+                tr.addEventListener('click', () => {
+                    counter++;
+                    td2.textContent = counter;
+                });
+                output.appendChild(tr);
+
+
+            }
+        </script>
+    </body>
+</html>
