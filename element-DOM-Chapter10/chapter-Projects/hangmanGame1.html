@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Hangman Game</title>
+        <style>
+            .gameArea {
+                text-align: center;
+                font-size: 2em;
+            }
+            .box,
+            .boxD {
+                display: inline-block;
+                padding: 5px;
+            }
+            .boxE {
+                display: inline-block;
+                width: 40px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                font-size: 1.5em;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="gameArea">
+            <div class="score"></div>
+            <div class="puzzle"></div>
+            <div class="letters"></div>
+            <button>Start Game </button>
+        </div>
+
+       <!--<script>
+            let words = ['good', 'better', 'best', 'quality'];
+            let mainObj = {
+                currentWord:'',
+                letter:'',
+                elements: [],
+                remainingLetters:0,
+            }
+
+            let gameArea = document.body.querySelector('.gameArea');
+            let score = document.body.querySelector('.score');
+            let puzzle = document.body.querySelector('.puzzle');
+            let letters = document.body.querySelector('.letters');
+            let button = document.body.querySelector('button');
+
+            button.addEventListener('click', startGame);
+
+
+            function startGame () {
+                if (words.length !== 0 ) {
+                    button.style.display = 'none';
+
+                    mainObj.elements = [];
+                    mainObj.remainingLetters = '0';
+                    
+                    mainObj.currentWord = words.shift();
+                    mainObj.letter = mainObj.currentWord.split('');
+
+                    builder();
+                } else {
+                    score.textContent = 'No More Words';
+                }
+            }
+
+            function pageElements(type, parent, text, className) {
+                let element = document.createElement(type);
+                element.textContent = text;
+                element.classList.add('boxE');
+                parent.appendChild(element);
+                return element;
+
+            }
+
+            function updateScore() {
+                score.textContent = `Total Letters Left ${mainObj.remainingLetters} `;
+                if (mainObj.remainingLetters.length <= 0 ) {
+                    console.log('Game Over');
+                    alert('Game Over');
+                    score.textContent = 'Game Over';
+                    button.style.display = 'block';
+                }
+            }
+
+            function builder() {
+                puzzle.innerHTML = '';
+                letters.innerHTML = '';
+
+                mainObj.letter.forEach(element => {
+                    let div = pageElements('div', puzzle, '_', 'box');
+                    if ( element == ' ') {
+                        div.textContent = ' ';
+                        div.style.borderColor = 'white';
+                    } else {
+                        mainObj.remainingLetters++;
+                    }
+                    mainObj.elements.push(div);
+                    updateScore();
+                });
+
+                for ( let i = 0; i < 26; i++ ) {
+                    let temp = String.fromCharCode(65 + i);
+                    let div = pageElements('div', puzzle, temp, 'box');
+
+                    let checker = function (e) {
+                        div.classList.remove('box');
+                        div.classList.add('boxD');
+                        div.style.backgroundColor = 'pink';
+                        div.removeEventListener('click', checker);
+                        checkLetter(temp);
+                    }
+
+                    div.addEventListener('click', checker);
+                }
+            }
+            
+           function checkLetter(letter) {
+                mainObj.letter.forEach( (element, index) => {
+                    if (element.toUpperCase() == letter) {
+                        mainObj.elements[index].textContent = letter;
+                        mainObj.remainingLetters--;
+                        updateScore();
+                    };
+
+                    
+                }
+                );
+           }
+
+        </script> -->
+
+        <script>
+            let words = ['good', 'better', 'best', 'quality'];
+            let mainObj = {
+                currentWord:'',
+                letter:'',
+                elements: [],
+                remainingLetters:0,
+            }
+
+            let gameArea = document.body.querySelector('.gameArea');
+            let score = document.body.querySelector('.score');
+            let puzzle = document.body.querySelector('.puzzle');
+            let letters = document.body.querySelector('.letters');
+            let button = document.body.querySelector('button');
+
+            button.addEventListener('click', startGame);
+
+            function startGame() {
+                if (words.length !== 0) {
+                button.style.display = 'none';
+
+                mainObj.elements = [];
+                mainObj.remainingLetters = 0; // Fix: Changed from string to number
+        
+                mainObj.currentWord = words.shift();
+                mainObj.letter = mainObj.currentWord.split('');
+
+                builder();
+                } else {
+                    score.textContent = 'No More Words';
+                }
+            }
+
+            function pageElements(type, parent, text, className) {
+                let element = document.createElement(type);
+                element.textContent = text;
+                element.classList.add('boxE');
+                parent.appendChild(element);
+                return element;
+
+            }
+
+            function updateScore() {
+                score.textContent = `Total Letters Left: ${mainObj.remainingLetters}`;
+                if (mainObj.remainingLetters <= 0) { // Fix: Change condition to check as a number
+                    alert('Game Over');
+                    score.textContent = 'Game Over';
+                    button.style.display = 'block';
+                }
+            }
+
+            function builder() {
+
+                puzzle.innerHTML = '';
+                letters.innerHTML = '';
+
+                mainObj.letter.forEach(element => {
+                    let div = pageElements('div', puzzle, '_', 'box');
+                    if (element === ' ') {
+                        div.textContent = ' ';
+                        div.style.borderColor = 'white';
+                    } else {
+                        mainObj.remainingLetters++; // Fix: Ensure count updates correctly
+                    }
+                mainObj.elements.push(div);
+                updateScore();
+
+                });
+
+                for (let i = 0; i < 26; i++) {
+                    let temp = String.fromCharCode(65 + i);
+                    let div = pageElements('div', letters, temp, 'box'); // Fix: Append to letters, not puzzle
+
+                    let checker = function (e) {
+                        div.classList.remove('box');
+                        div.classList.add('boxD');
+                        div.style.backgroundColor = 'pink';
+                        div.removeEventListener('click', checker);
+                        checkLetter(temp);
+                    };
+
+                    div.addEventListener('click', checker);
+                }
+            }
+
+            function checkLetter(letter) {
+                mainObj.letter.forEach( (element, index) => {
+                    if (element.toUpperCase() == letter) {
+                        mainObj.elements[index].textContent = letter;
+                        mainObj.remainingLetters--;
+                        updateScore();
+                    };
+
+                    
+                }
+                );
+           }
+
+        </script>
+    </body>
+</html>
