@@ -10,12 +10,44 @@
         <label for="">Name</label>
         <br>
         <input type="text" title="one" id="addItems" onchange="go(this)"/>
+        <div id="output">Hello World</div>
+        <input type="text" id="val" value="Javascript">
 
-        <script type="text/javascript">
+
+        <div class="holder">
+            <div onclick="output('three')">Three
+                <div onclick="output('two')">Two
+                    <div onclick="output('one')">One</div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="btn">Click Me</div>
+        <script>
+            const btn = document.querySelector(".btn");
+            btn.addEventListener("click", myFun);
+            function myFun() {
+                console.log("clicked");
+                btn.removeEventListener('click', myFun);
+        }
+    </script>
+        <script>
+            function output(val) {
+                console.log(val);
+            }
+        </script>
+
+        <!-- <script type="text/javascript">
             function go(g) {
                 eval(g.value);
             }
-        </script>
+        </script> -->
+
+        <!-- <script>
+            document.getElementById('val').value = document.getElementById('output').textContent;
+        </script> -->
+
     </body>
 
 </html>

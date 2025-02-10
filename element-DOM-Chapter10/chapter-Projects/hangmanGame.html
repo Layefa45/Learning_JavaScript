@@ -160,6 +160,7 @@
                 builder();
                 } else {
                     score.textContent = 'No More Words';
+                    button.textContent= 'End Game';
                 }
             }
 
@@ -175,8 +176,8 @@
             function updateScore() {
                 score.textContent = `Total Letters Left: ${mainObj.remainingLetters}`;
                 if (mainObj.remainingLetters <= 0) { // Fix: Change condition to check as a number
-                    alert('Game Over');
-                    score.textContent = 'Game Over';
+                    //alert('Complete!');
+                    score.textContent = "You've completed this word.";
                     button.style.display = 'block';
                 }
             }

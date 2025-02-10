@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Practice Exercise 11.3</title>
+    </head>
+    <body>
+        
+
+
+        <script>
+            // function message(message, eventObj) {
+            //     console.log(eventObj);
+            //     console.log(message);
+            // }
+
+
+
+
+            // window.onload = function (e) {
+            //     message ('Window Ready', e);
+            //  }
+
+            //  document.addEventListener('DOMContentLoaded', (e) => {
+            //     message('Document Ready', e);
+
+            //  }) 
+
+            
+            document.addEventListener("DOMContentLoaded", (e) => {
+                message("Document ready", e);
+            });
+
+            
+           
+
+            window.onload = (e) => {
+                message("Window ready", e);
+            }
+
+
+            
+            function message(val, event) {
+                console.log(event);
+                console.log(val);
+            }
+ 
+        </script>
+    </body>
+</html>

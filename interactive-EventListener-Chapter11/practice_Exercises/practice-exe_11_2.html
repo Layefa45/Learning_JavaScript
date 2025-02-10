@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Practice Exercise 11.2</title>
+    </head>
+    <body>
+        <div>red</div>
+        <div>yellow</div>
+        <div>green</div>
+        <div>purple</div>
+        <div>pink</div>
+        <div>grey</div>
+        <div>white</div>
+        <div>gold</div>
+        <div>blue</div>
+        <div>violet</div>
+        <div>black</div>
+        <div>brown</div>
+    </body>
+
+    <script>
+        let divs = document.body.querySelectorAll('div');
+        divs.forEach( (e) => {
+            e.addEventListener('click', () => {
+                e.style.backgroundColor = e.textContent;
+                e.style.color = e.textContent;
+            })
+        
+        })
+        document.addEventListener("DOMContentLoaded", (e) => {
+            console.log(e);
+        });
+    </script>
+</html>
