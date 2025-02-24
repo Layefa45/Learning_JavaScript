@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>MouseOver Event Handler</title>
+    </head>
+    <body>
+        <div id="divvy" onmouseover="changeColor()" style="width: 100px; height: 100px; background-color: pink;"></div>
+        <script>
+            function changeColor() {
+                document.getElementById('divvy').style.backgroundColor = 'blue';
+            }
+        </script>
+    </body>
+</html>

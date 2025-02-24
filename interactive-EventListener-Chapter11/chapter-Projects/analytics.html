@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Elements Analytics </title>
+    </head>
+    <body>
+        <div class="main-container">
+            <div class="box" id="red">I am red</div>
+            <div class="box" id="yellow">I am yellow</div>
+            <div class="box" id="blue">I am blue</div>
+            <div class="box" id="pink">I am pink</div>
+        </div>
+
+        <script>
+            let trackArray = [];
+
+            let container = document.querySelector('.main-container');
+            container.addEventListener('click', captureClick);
+
+            function captureClick(e) {
+                var d  = e.target;
+                if (d.id)  {
+                    let trackObj = { }
+                    trackObj.textContent = d.textContent;
+                    trackObj.id = d.id;
+                    trackObj.className = d.className;
+                    trackObj.tagName = d.tagName;
+                    console.dir(d);
+                    trackArray.push(trackObj);
+
+                    console.log(trackArray);
+
+                }
+                // console.dir(d);
+                // console.log(trackArray);
+
+            }
+
+        </script>
+    </body>
+</html>

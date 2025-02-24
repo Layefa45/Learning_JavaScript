@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Practice Exercise 11.11</title>
+        <style>
+            div {
+                height: 100px;
+                width: 100px;
+                background-color: aqua;
+                position: absolute;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="move">Moving</div>
+
+        <script>
+            let move = document.getElementById('move');
+            move.textContent = '';
+            
+
+            let obj = {
+                speed:10,
+                direction:1,
+                position:0
+            };
+
+            move.addEventListener('click', moveBlock);
+            function moveBlock() {
+                let x = 30;
+
+                setInterval ( function () {
+
+                    if (x < 1) {
+                        clearInterval();
+                    } else {
+                        if (obj.position > 800 || obj.position < 0) {
+                            obj.direction *= -1;
+                        }
+                        x--;
+                        obj.position += x * obj.direction
+                        move.style.left = obj.position + 'px';
+                        console.log(obj.position);
+                    }
+                }, 2)
+            }
+            
+        </script>
+    </body>
+</html>

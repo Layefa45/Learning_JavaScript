@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Animating Elements</title>
+        <style>
+            div,.block{
+                background-color: purple;
+                width: 100px;
+                height: 100px;
+                position: absolute;
+            }
+
+            .pink{
+                background-color: black;
+                margin-top: 15%;
+            }
+        </style>
+    </head>
+    <body>
+        <button onclick="toTheRight()"> Go Right</button>
+        <br>
+        <br>
+        <div id="block" class="block"></div> 
+        
+        <div class="pink" id="pink">red</div>
+
+
+        <script>
+            function toTheRight() {
+                let b = document.getElementById('block');
+                let c = document.getElementById('pink');
+                let x = 0;
+                let d = 0;
+
+                setInterval(function () {
+                    if (x === 600) {
+                        clearInterval();
+                       
+
+                    } else {
+                        x++;
+                        b.style.left = x + 'px';
+                        c.style.left = x + 'px';
+                    }
+                    
+                    
+                    
+                }, 2)
+
+                
+            }
+        </script>
+    </body>
+</html>

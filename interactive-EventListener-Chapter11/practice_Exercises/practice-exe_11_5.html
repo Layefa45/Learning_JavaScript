@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Practice Exercise 11.5</title>
+    </head>
+    <body>
+        <!--<div class="output"></div>
+        <input type="text" name="message" placeholder="Your Message">
+        <button class="btn1">Button 1</button>
+        <button class="btn2">Button 2</button>
+        <div>
+            <button class="btn3">Log</button>
+        </div>
+
+        <script>
+
+            const output = document.querySelector('.output');
+            const myInput = document.querySelector("input[name='message']");
+            const btn1 = document.querySelector('.btn1');
+            const btn2 = document.querySelector('.btn2');
+            const btn3 = document.querySelector('.btn3');
+
+            // CREATING ARRAY TO TRACK AND LOG EVENTS
+
+
+            let logArray = [];
+
+
+            // ADDING EVENT LISTENERS 
+
+            btn1.addEventListener('click', captureEvent);
+            btn2.addEventListener('click', captureEvent);
+            btn3.addEventListener('click', () => {
+                console.log(logArray);
+            });
+
+
+
+            function captureEvent(eventObj) {
+                output.textContent = myInput.value;
+                let eventTarget = eventObj.target;
+                console.dir(eventTarget);
+                
+                let obJ = {
+                    message: myInput.value,
+                    type: eventTarget.type,
+                    class: eventTarget.className,
+                    tag: eventTarget.tagName
+                };
+
+                logArray.push(obJ);
+                myInput.value = ' ';
+            }
+        </script> -->
+
+        <div class="holder">
+            <div onclick="output('Three')">3
+                <div onclick="output('Two')">2
+                    <div onclick="output('One')">1</div>
+                </div>
+            </div>
+        </div>
+        <script>
+            function output(val) {
+                console.log(val);
+            }
+        </script>
+           
+
+    </body>
+</html>

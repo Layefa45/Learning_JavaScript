@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Practice Exercise 11.4</title>
+    </head>
+    <body>
+        <div class="some"></div>
+        <script>
+            let som = document.querySelector('.some');
+            let elemObj = document.body.querySelector('div');
+            elemObj.textContent = 'hello world';
+            elemObj.style.width = '100px';
+            elemObj.style.height = '100px';
+            elemObj.style.backgroundColor = 'blue';
+
+            // ADDING EVENT LISTENERS 
+
+                som.addEventListener('mousedown', function (e) { 
+                    message('green', e);
+                });
+                som.addEventListener('mouseover', function (e) {
+                    message('red', e);
+                });
+                som.addEventListener('mouseout', function (e) {
+                    message('yellow', e);
+                });
+               som.addEventListener('mouseup', function(e) {
+                message('blue', e);
+               }); 
+
+
+            function message(value, eventObj) {
+                console.log(value);
+                console.log(eventObj);
+
+                som.style.backgroundColor = value;
+            }
+
+
+        </script>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Form Submission Action Page</title>
+    </head>
+    <body>
+        <script>
+            let q = window.location.search;
+            let params = new URLSearchParams(q);
+            let name = params.get(name);
+            console.log(name);
+        </script>
+    </body>
+</html>

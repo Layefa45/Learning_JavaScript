@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Practice Exercise 11.7</title>
+    </head>
+    <body>
+        <div id="output"></div>
+        <input type="text" placeholder="First Name" name="first"> <br>
+        <input type="text" placeholder="Last Name" name="last"> <br>
+
+        <script>
+            let output = document.querySelector('#output');
+            //console.log(output);
+
+            let first = document.querySelector("input[name = 'first']");
+            let last = document.querySelector("input[name = 'last']");
+            // console.log(first);
+            // console.log(last);
+
+            first.addEventListener('change', () => {
+                console.log('First Name Changed Content');
+                outputContent('First Name: ' + first.value);
+            });
+
+            first.addEventListener('blur', () => {
+                console.log('First Name Blur Event');
+                //outputContent('First Name Blur Event Content: ' + first.value);
+            });
+
+            first.addEventListener('focus', () => {
+                //outputContent('First Name OnFocus Event ' + first.value );
+                console.log('First Name OnFocus');
+
+            });
+
+            last.addEventListener('change', () => {
+                console.log('Last Name Changed Content');
+                outputContent('Last Name: ' + last.value);
+            });
+
+            last.addEventListener('blur', () => {
+                console.log('Last Name Blur Event');
+                //outputContent('Last Name Blur Event Content: ' + last.value);
+            });
+
+            last.addEventListener('click', () => {
+                console.log('Last Name OnFocus');
+                //outputContent('Last Name OnFocus Event: ' + last.value)
+            });
+
+
+
+            
+
+            function outputContent(m) {
+                output.textContent = m;
+            }
+
+        </script>
+    </body>
+</html>

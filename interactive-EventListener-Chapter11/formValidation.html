@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Form Validation </title>
+    </head>
+    <body>
+        <div id="wrapper"></div>
+        <form action="anotherPage.html" method="get" onsubmit="return valForm()">
+            <input type="text" name="firstName" id="firstName"  placeholder="First Name"/>
+            <input type="text" name="lastName" id="lastName"  placeholder="Last Name"/>
+            <input type="text" name="age" id="age"  placeholder="Age"/>
+            <input type="submit" value="Submit"/>
+        </form>
+
+        <script>
+            function valForm() {
+                var p = event.target.children;
+                if (p.firstName.value == '') {
+                    message('Need a First Name!!');
+                    return false;
+                }
+                if (p.lastName.value == '') {
+                    message('Need a Last Name');
+                    return false;
+                }
+                if (p.age.value == '') {
+                    message('Need an Age');
+                    return false;
+                }
+                return true;
+            }
+
+            function message(m) {
+                document.getElementById('wrapper').innerHTML = m;
+            }
+        </script>
+    </body>
+</html>
