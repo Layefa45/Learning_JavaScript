@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Practice Exercise 12.1</title>
+    </head>
+    <body>
+        <div id="output">Complete JavaScript Course</div>
+        <br>
+        
+        <label> Search for: </label>
+        <br>
+        <input type="text" id="sText">
+        <br>
+        <br>
+        <label>Replace With:</label>
+        <br>
+        <input type="text" id="rText">
+
+        <button id="btn">Replace</button>
+
+        <script>
+            // let output = document.getElementById('output');
+            // let searchInput = document.getElementById('sText');
+            // let replaceInput = document.getElementById('rText');
+            // let button = document.getElementById('btn');
+
+            // btn.addEventListener('click', () => {
+            //     let searchText = searchInput.value;
+            //     let replaceText = replaceInput.value;
+            //     let outputText = output.innerHTML;
+
+            //     let replacer = outputText.replace(/complete/i, `${replaceText}` );
+            //     console.log(outputText.replace(/`${searchText}`/g, `${replaceText}`));
+            //     output.textContent = replacer;
+
+            // })
+
+            
+            /// ANOTHER TYOUT FOLLOWING THE BOOK'S INSTRUCTION 
+
+            let output = document.getElementById('output');
+            let searchInput = document.getElementById('sText');
+            let replaceInput = document.getElementById('rText');
+            let button = document.querySelector('button');
+
+            button.addEventListener('click', lookup)
+
+            function lookup() {
+                let s = output.textContent;
+                let rt = replaceInput.value;
+
+                let regex = new RegExp(searchInput.value, 'gi');
+
+                if (s.match(regex)) {
+                    let newValue = s.replace(regex, rt);
+                    output.textContent = newValue;
+                }
+            }
+
+        </script>
+    </body>
+</html>

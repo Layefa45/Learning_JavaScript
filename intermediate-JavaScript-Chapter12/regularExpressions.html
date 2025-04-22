@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset='UTF-8' name="viewport" content="width=device-width">
+        <title>Regular Expressions</title>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <h1>Regular Expressions</h1>
+        <p>
+            Regular Expressions are simply ways to describe text patterns. They are also called 'Regex'.
+        </p>
+        <p>
+            Regex is not only useful for finding strings, but can also be used for replacing strings. The below is an email validation check in Regex.
+        </p>
+
+        <code>
+            /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]\.[a-zA-Z0-9._-]+)/g
+        </code>
+         <p>
+            Check the console out to see outputs of code.
+         </p>
+
+
+         <code>
+            let text = 'I love Javascript!';
+            console.log(text.match(/javascript/)); // OUTPUT NULL
+         </code>
+        <br>
+        <br>
+         <code>
+            let text = 'I love Javascript!';
+            console.log(text.match(/javascript/i)); // CHECK CONSOLE (i) MAKES IT CASE INSENSITIVE.
+         </code>
+
+         <br>
+         <br>
+         <code>
+            
+            let text2 = 'I love Javascript!';
+            console.log(text2.match(/javascript|nodejs|react/i)); // THIS RETURNS EITHER Javascript, NODEJS OR REACT WHEN IT FINDS A FIRST MATCH.
+         </code>
+
+        <h2>GROUPS</h2>
+        <p>
+            There are many reasons to group your regex. Whenever you want to match a group of characters you can surround them with parentheses.
+        </p>
+
+        <code>
+            let text = 'I love JavaScript';
+            console.log(text.match(/(love|dislike)/s(javascript|spiders)/gi));
+        </code>
+
+        <h2>PRACTICAL REGEX</h2>
+        <p>
+            In this section we'll use strings methods and Regex (Regular Expressions). We'll use the search() and replace() methods.
+        </p>
+        <code>
+            let text = "That's not the case";
+            console.log(text.search(/Case/i));
+        </code>
+
+        <h2>EMAIL VALLIDATION</h2>
+        <p>In order to create a regex pattern, we need to be able to describe the patterns with words first.</p>
+        <p>Email addresses consists of five parts, in the form '[name]@[domain].[extension]'.</p>
+        <p>
+            The parts explained:
+            <dl>
+                <dt>
+                    'Name'
+                    <dd>One or more alphanumerical characters, underscores, dashes or dots.</dd>
+                </dt>
+                <dt>
+                    '@'
+                    <dd>Literal Character.</dd>
+                </dt>
+                <dt>
+                    'Domain'
+                    <dd>One or more alphanumerical characters, underscores, dashes or dots.</dd>
+                </dt>
+                <dt>
+                    '.'
+                    <dd>Literal dot.</dd>
+                </dt>
+                <dt>
+                    'Extension'
+                    <dd>One or more alphanumerical characters, underscores, dashes or dots.</dd>
+                </dt>
+            </dl>
+        </p>
+
+        <p>The steps for the regex:
+            <ul>
+                <li>[a-zA-Z0-9._-]+</li>
+                <li>@</li>
+                <li>[a-zA-Z0-9._-]+</li>
+                <li>\.</li>
+                <li>[a-zA-Z0-9._-]+</li>
+            </ul>
+        </p>
+
+        <p>Putting it all together: <br> /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/g</p>
+        
+        <code>
+            <pre>
+    let emailPattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/g;
+    let validEmail = 'maaike_1234@email.com';
+    let invalidEmail = 'maaike@mail@.com';
+    console.log(validEmail.match(emailPattern));
+    console.log(invalidEmail.match(emailPattern));
+            </pre>
+
+        </code>
+
+        <script>
+            let text = 'I love Javascript!';
+            console.log(text.match(/javascript/)); // NULL BECAUSE IT IS CASE SENSITIVE.
+
+            let text1 = 'I love Javascript!';
+            console.log(text1.match(/javascript/i)); // CASE INSENSITIVE.
+
+            // SPECIFYING MULTIPLE OPTION FOR WORDS
+            let text2 = 'I love Javascript!';
+            console.log(text2.match(/javascript|nodejs|react/i)); 
+
+            let text3 = 'I love React and JavaScript';
+            console.log(text3.match(/javascript|nodejs|react/i));
+
+            
+            let text4 = 'I love React and JavaScript';
+            console.log(text4.match(/javascript|nodejs|react/gi));
+
+            
+            // CHARACTER OPTIONS 
+
+            let d = 'd';
+            console.log(d.match(/[abc]/)); // OUTPUT NULL
+            console.log(d.match(/[abcd]/));
+            console.log(d.match(/([a-d])/));
+            console.log(d.match(/[a-zA-Z0-9]/));
+            console.log(d.match(/[a-z]/i));
+            console.log(d.match(/[a-a-zA-Z0-9]/));
+
+            
+            // WILDCARD CHARACTER 'DOT' ALLOWS FOR ANY CHARACTER TO BE MATCHED
+            let texts = 'Just some text.';
+            console.log(texts.match(/./g));
+
+            // USING BACKSLASH TO ESCAPE WILDCARDS OR CHARACTERS WITH SPECIAL MEANINGS 
+            let word = 'Just some text.';
+            console.log(word.match(/\./g));
+
+            // SOME CHARACTERS THAT GET SPECIAL MEANING WHEN A BACKSLASH IS USED WITH THEM 
+
+            let word1 ="I'm 29 years old";
+            console.log(word1.match(/\d/g)); // THIS MATCHES ONLY THE DIGITS PRESENT
+
+            let word2 = 'Coding is a lot of fun';
+            console.log(word2.match(/\s/g)); // THIS MATCHES ONLY THE WHITESPACE PRESENT
+
+            let word3 = 'In the end or at the beginning';
+            console.log(word3.match(/\bin/gi)); // THIS MATCHES TEXT ONLY WHEN ITS' AT THE BEGINNING OF A WORD.
+
+            // MATCH IS A STING METHOD IT CAN'T BE USED ON NUMBERS(INTEGERS)
+            // let nr = 357;
+            // console.log(nr.match(/3/g)); // THIS WILL GET A TYPE-ERROR RESPONSE.
+
+
+            //          GROUPS
+            let group = 'I love JavaScript';
+            console.log(group.match(/(love|dislike)\s(javascript|spiders)/gi));
+
+            let group1 = 'I love JavaScript';
+            console.log(group1.match(/[a-zA-Z0-9][a-zA-Z0-9][a-a-zA-Z0-9][a-zA-Z0-9]/gi));
+
+            let group2 = 'You are doing great';
+            console.log(group2.match(/n?g/gi)); // THIS LOOKS FOR CHARACTERS THAT MAY OR NOT BE PRECEDED BY N
+
+            // IF YOU WANT TO REPEAT SOMETHING AT LEAST ONCE, BUT OPTIONALLY OFTEN, USE THE '+'
+            let group3 = '12312312345123';
+            console.log(group3.match(/(123)+/));
+
+            let group4 = ['123123123a', '123a', 'a', 'ba'];
+            group4.forEach((e) => {
+                console.log(e.match(/(123)*a/));
+            })
+
+            let son = 'My name is Abulu Tamaratarelayefa Jennifer';
+            console.log(son.match(/[a-zA-Z0-9]{4}/gi));
+
+            let group5 = 'I love JavaScript';
+            console.log(group5.match(/(?<language> javascript)/i));
+
+            // PRACTICAL REGEX
+            let praRegex = "That's not the case";
+            console.log(praRegex.search(/Case/i));
+
+            // EMAIL VALIDATION CODE SNIPPET 
+
+            
+            let emailPattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/g;
+            let validEmail = 'maaike_1234@email.com';
+            let invalidEmail = 'maaike@mail@.com';
+            console.log(validEmail.match(emailPattern));
+            console.log(invalidEmail.match(emailPattern));
+
+            
+
+        </script>
+    </body>
+</html>

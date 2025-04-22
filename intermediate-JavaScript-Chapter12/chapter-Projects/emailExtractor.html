@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset='UTF-8' name="viewport" content="width=device-width"/>
+        <title>Email Extractor</title>
+    </head>
+    <body>
+        <label>Enter Your Email Addresses</label>
+        <textarea name="txtarea" rows="2" cols="50"></textarea> <button>Enter</button>
+        <br>
+        <br>
+        <textarea name="txtarea2" rows="2" cols="50"></textarea>
+
+        <script>
+            let firstText = document.querySelector('textarea[ name ="txtarea"]');
+            let secondText = document.querySelector('textarea[name="txtarea2"]');
+            let btn = document.querySelector('button');
+
+            btn.addEventListener('click', textFilter);
+
+            function textFilter() { 
+                let textContents = firstText.value;
+                let emailMatch = textContents.match(/([a-zA-Z0-9_.-]+@[a-zA-Z0-9_.-]+\.[a-zA-Z0-9_.-]+)/g);
+
+                let holdArray = [];
+
+                for (let i = 0; i < emailMatch.length; i++) {
+                    if (holdArray.indexOf(emailMatch[i]) == -1) {
+                        holdArray.push(emailMatch[i]);
+                    }
+
+                }
+                secondText.value = holdArray.join(",")
+            }
+        
+            // const firstArea = document.querySelector("textarea[name='txtarea']");
+            // console.log(firstArea);
+            // const secArea = document.querySelector("textarea[name='txtarea2']");
+            // console.log(secArea);
+            // document.querySelector("button").addEventListener("click", lookUp);
+            // function lookUp() {
+            //     console.log('Button is clicked')
+            //     const rawTxt = firstArea.value;
+            //     console.log('Input Text:', rawTxt);
+
+            //     const eData = rawTxt.match(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-])/g) || [];
+            //     console.log('Matched Emails:', eData);
+
+            //     if (!eData) {
+            //         console.log('No emails');
+            //         secArea.value = '';
+            //         return;
+            //     }
+            //     const holder = [];
+            //     for (let x = 0; x < eData.length; x++) {
+            //         if(!holder.includes(eData[x])) {
+            //             holder.push(eData[x]);
+
+            //         }                   
+            //     }
+            //     secArea.value = holder.join(', ');
+            //     console.log('Extracted email:', secArea.value);
+            // }
+       
+       </script>
+    </body>
+</html>

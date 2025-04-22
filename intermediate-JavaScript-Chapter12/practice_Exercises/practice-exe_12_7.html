@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Practice Exercise 12.7</title>
+        <style>
+            .ready {
+                background-color: #ddd;
+                color: red;
+                text-decoration: line-through;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="main">
+            <label for="#">INPUT BOX</label>
+            <input type="text" placeholder="New Item" value="Test Item" maxlength="10">
+            <button>ADD</button>
+        </div>
+        <ul class="output"></ul>
+        
+        <script>
+            let inputMain = document.querySelector('.main input');
+            let btnMain = document.querySelector('.main button');
+            btnMain.addEventListener('click', createListItem);
+
+            let ulOutput = document.querySelector('.output');
+
+            const tasks = JSON.parse(localStorage.getItem('taskList')) || [];
+            console.log(tasks);
+
+            if (tasks.length > 0) {
+                tasks.forEach((task) => {
+                    genItem(task.val, task.checked);
+                });
+            }
+           
+ 
+            function saveTasks() {
+                localStorage.setItem('taskList', JSON.stringify(tasks));
+            }
+
+            function taskBuilder() {
+                tasks.length = 0;
+                let seLect = ulOutput.querySelectorAll('li');
+
+                seLect.forEach((e) => {
+                    let tempTask = {
+                        val: e.textContent,
+                        checked: false
+                    }
+
+                    // if (e.classList === 'ready') {
+                    //     tempTask.checked = true;
+                    // }
+                    // tasks.push(tempTask);
+
+                    if (e.classList.contains('ready')) {
+                        tempTask.checked = true;
+                    }
+                    tasks.push(tempTask)
+                })
+                saveTasks();
+            }
+
+            // function saveTasks() {
+            //     localStorage.setItem('taskList', JSON.stringify(tasks));
+            // }
+
+            function genItem(val, complete) {
+                let newList = document.createElement('li');
+                let textNodE = document.createTextNode(val);
+
+                newList.appendChild(textNodE);
+                ulOutput.append(newList);
+                inputMain.value = '';
+
+                if(complete) {
+                    newList.classList.add('ready');
+                }
+
+                newList.addEventListener('click', (e) => {
+                    newList.classList.toggle('ready');
+                    taskBuilder();
+                });
+                return val;
+            }
+
+            function createListItem() {
+                const val = inputMain.value;
+                if (val.length > 0) {
+                    const myObj = {
+                        val: genItem(val, false),
+                        checked: false
+                };
+                tasks.push(myObj);
+                saveTasks();
+                }
+            }
+
+
+        </script>
+    </body>
+</html>

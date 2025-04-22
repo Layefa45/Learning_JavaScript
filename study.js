@@ -228,3 +228,36 @@ for (let i = 0; i < arrn.length; i++) {
 
 let up = console.log('I love');
 //console.log(up);
+
+function addNums(a, b) {
+    return a + b;
+}
+const val1 = 5;
+const val2 = 6;
+
+console.log(addNums(val1, val2));
+
+
+// function randDescription() {
+//     let askSome = prompt('Enter a number for a random wish?: ')
+//     let arrWords = ['Hope', 'Love', 'Joy', 'Happiness', 'Success', 'Rejoice'];
+//     let randomNum = Math.floor(Math.random() *arrWords.length);
+//     console.log('Your wish:', arrWords[randomNum]);
+
+// }
+// randDescription();
+
+function evenNum(a) {
+    if (a % 2 === 0) {
+        //console.log('Even Number');
+        return 'Even Number';
+    } else {
+        //console.log('Odd Number');
+        return 'Odd Number';
+    }
+    //return 'A Function was called.';
+}
+evenNum(5); // THIS WOULDN'T GET CALLED THE FUNCTION HAS THE 'RETURN' IT NEEDS TO BE SAVED IN A VARIABLE FIRST TO SEE IT'S OUTPUT.
+
+let saveFunc = evenNum(3);
+console.log(saveFunc);

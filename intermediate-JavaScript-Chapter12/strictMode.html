@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width">
+        <title>Strict Mode</title>
+    </head>
+    <body>
+        <p>
+            We can change the understanding and forgiving behaviour of JavaScript to some extent using <b>strict mode.</b>
+            <br>
+            You can switch on the <i>strict mode</i> with the following command in your code. This needs to be the first command in your code.
+        </p>
+        <code>
+            <pre>
+    'use strict';
+            </pre>
+        </code>
+
+        <p>
+            Here is something that works when we don't use strict mode. 
+        </p>
+        <code>
+            <pre>
+    function sayHi() {
+        greeting = 'Hello';
+        console.log(greeting);
+    }
+    sayHi(); // CHECK CONSOLE FOR OUTPUT
+            </pre>
+        </code>
+
+        <p>
+            We didn't declare 'greeting', so JavaScript did it for us by adding 'greeting' to the top level and it will log 'Hello'. <br>
+            If we enable 'strict mode', it will have an error.
+        </p>
+        <code>
+            <pre>
+    'use strict';
+    function sayHi() {
+        greeting = 'Hello';
+        console.log(greeting);
+    }
+    sayHi();
+            </pre>
+        </code>
+
+
+        <script>
+            //'use strict'; // UNCOMMENT TO USE THE STRICT MODE.
+            function sayHi() {
+                greeting = 'Hello';
+                console.log(greeting);
+            }
+            sayHi();
+
+            let val = 5;
+            val += adder();
+            val += adder();
+            val += adder();
+            console.log(val);
+            function adder() {
+                let counter = val;
+                for (let i = 0; i < val; i++ ) {
+                    counter++;
+                }
+                return counter;
+            }
+        </script>
+    </body>
+</html>

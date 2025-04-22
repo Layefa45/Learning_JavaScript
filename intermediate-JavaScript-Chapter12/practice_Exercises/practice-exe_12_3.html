@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width">
+        <title>PRACTICE EXERCISE 12.3</title>
+    </head>
+    <body>
+        <script>
+            function dCheck() {
+                let lastOne = '';
+                let newArgs = [];
+                for ( let i = 0; i < arguments.length; i++ ) {
+                    lastOne = arguments[i];
+                    console.log(lastOne);
+                    newArgs.push(arguments[i]);
+
+                }
+                console.log(newArgs);
+                return newArgs;
+            }
+            console.log(dCheck('Pineapple', 'apple', 'Avocado', 'happy', 'outside'));
+        </script>
+    </body>
+</html>

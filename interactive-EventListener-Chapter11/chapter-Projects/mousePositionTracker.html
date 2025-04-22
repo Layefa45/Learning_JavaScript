@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Mouse Position Tracker</title>
+        <style>
+            .active {
+                background-color: red;
+            }
+            #main-container {
+                height: 200px;
+                width: 200px;
+                display: inline-block;
+                padding: 20px;
+                border: 2px dotted black;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="main-container"></div>
+        <div class="output"></div>
+
+        <script>
+            let container = document.getElementById('main-container');
+
+            container.addEventListener('mouseover', (e) => {
+                e.target.classList.add('active');
+            });
+            container.addEventListener('mouseout', (e) => {
+                e.target.classList.remove('active');
+            });
+            container.addEventListener('mousemove', position);
+
+            function position() {
+                let html = 'X: across ' + event.clientX + " | Y: up " + event.clientY;
+                document.querySelector('.output').textContent = html;
+            }
+
+        </script>
+    </body>
+</html>

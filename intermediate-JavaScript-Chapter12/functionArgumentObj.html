@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width">
+        <title>Function And The Argument Object</title>
+    </head>
+    <body>
+        <h1>FUNCTIONS AND THE ARGUMENT OBJECT</h1>
+        <p>
+            JavaScript deals with arguments in functions by adding them to a custom object called <b>arguments.</b> <br>
+            This object works a lot like an array, and we can use it instead of using the name of the parameter.
+        </p>
+        <code>
+            <pre>
+    function test(a, b, c) {
+        console.log('First:', a, arguments[0]);
+        console.log('Second:', b, arguments[1]);
+        console.log('Third', c, arguments[2]);
+    }
+    test('fun', 'js', 'secrets'); // CHECK CONSOLE FOR OUTPUTS
+            </pre>
+        </code>
+
+        <p>
+            When you update one of the parameters, the arguments gets changed accordingly.
+        </p>
+        <code>
+            <pre>
+    function test(a, b, c) {
+        a = 'nice';
+        arguments[1] = 'JavaScript';
+        console.log('First:', a, arguments[0]);
+        console.log('Second:', b, arguments[1]);
+        console.log('Third', c, arguments[2]);
+    }
+    test('fun', 'js', 'secrets'); // CHECK CONSOLE FOR OUTPUTS
+            </pre>
+        </code>
+
+        <p>
+            If the function is called with more arguments than were declared in the function signature, this is the way to access them. <br>
+            However the modern way is to use the rest parameter <i>(...param)</i> instead of the <b>arguments</b> object.
+        </p>
+
+        <script>
+            function test(a, b, c) {
+                console.log('First:', a, arguments[0]);
+                console.log('Second:', b, arguments[1]);
+                console.log('Third', c, arguments[2]);
+            }
+            test('fun', 'js', 'secrets'); // CHECK CONSOLE FOR OUTPUTS
+
+            
+            function tests(a, b, c) {
+                a = 'nice';
+                arguments[1] = 'JavaScript';
+                console.log('First:', a, arguments[0]);
+                console.log('Second:', b, arguments[1]);
+                console.log('Third', c, arguments[2]);
+            }
+            tests('fun', 'js', 'secrets'); // CHECK CONSOLE FOR OUTPUTS
+        </script>
+    </body>
+    
+</html>

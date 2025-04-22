@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Simple Math Quiz</title>
+    </head>
+    <body>
+        <span class="val1"></span> <span class="op">+</span> <span class="val2"></span>
+            <input type="text" name="answer">
+        
+        <button>Check</button>
+        <div class="output"></div>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', app);
+            const game = {
+                val1: 0,
+                val2: 0,
+                counter: 0,
+                answer: 0
+            };
+
+            const ele = document.createElement('h3');
+            ele.textContent = 'History';
+            document.body.appendChild(ele);
+
+
+            function app() {
+                const firstSpan = document.querySelector('.val1');
+                const spanOperator = document.querySelector('.op');
+                const secondSpan = document.querySelector('.val2');
+                const button = document.querySelector('button');
+                const divOutput = document.querySelector('.output');
+                const input = document.querySelector('input');
+
+                function loadQuestion() {
+                    let num1 = getRandomNumber(100, 50);
+                    let num2 = getRandomNumber(200, 90);
+
+                    game.val1 = num1;
+                    game.val2 = num2;
+                    game.answer = num1 + num2;
+
+                    firstSpan.textContent = game.val1;
+                    secondSpan.textContent = game.val2;
+                    
+                    input.value = '';
+
+                }
+
+                
+                function init() {
+                    button.addEventListener('click', checker);
+                    loadQuestion();
+
+                }
+
+                function checker () {
+                    game.counter++;
+                    const answers = input.value;
+                    const check = parseInt(answers) === game.answer;
+
+                    divOutput.textContent = check ? 'Correct' : 'Incorrect';
+                    divOutput.style.backgroundColor = check? 'green' : 'red';
+                    const bod = document.querySelector('body');
+                    bod.style.backgroundColor = check ? 'green' : 'red';
+       
+                    const newDiv = document.createElement('div');
+                    newDiv.textContent = `${game.counter}) ` + ` ${firstSpan.textContent} ${spanOperator.textContent} ${secondSpan.textContent} = ${game.answer} [Your answer: ${answers}]` ;
+                    newDiv.style.color = check? 'green' : 'red'; 
+                    ele.appendChild(newDiv)  ; 
+                    loadQuestion();    
+                }
+
+                function getRandomNumber(max, min) {
+                    return Math.floor(Math.random() * (max - min + 1)) + min;
+                }
+                init();
+            }
+          
+        </script>
+    </body>
+</html>

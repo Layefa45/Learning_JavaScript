@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"> 
+        <title>Practice Exercise 12.2</title>
+    </head>
+    <body>
+        <div id="output"></div>
+        <input type="text" placeholder="Enter Email">
+        <button>Check</button>
+
+        <!--<script>
+            let output = document.getElementById('output');
+            let input = document.querySelector('input');
+            let button = document.querySelector('button');
+
+            button.addEventListener('click', checker);
+
+            function checker() {
+                let checkPattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9])/g;
+                let inputValue = input.value;
+
+                
+                // THIS CODE WAS MADE TO CHECK THE CODE WITH ARRAYS AND NEED REFACTORING BECAUSE ONLY ONE CLICK RESOLVE THE CODE.
+
+                /*let emailList = ['122,.com', 'tamaratarelayefa@gmail.com', 'maailk.@nn@.com', 'abcd.com', 'layefaevans@gmai.com'];
+                for (let i = 0; i < emailList.length; i++) {
+                    if(emailList[i].match(checkPattern)) {
+                        message('Valid Email', emailList[i]);
+                        console.log(emailList[i])
+                    } else {
+                        message('Invalid Email', emailList[i]);
+                        console.log(emailList[i])
+                    }
+                } */
+                if(inputValue.match(checkPattern)) {
+                    output.style.color = 'green';
+                    message('Valid email');
+                } else {
+                    message('Invalid email');
+                    output.style.color = 'red';
+                }
+            }
+
+            function message(m) {
+                output.textContent = m;
+                console.log(m);
+            }
+        </script> -->
+
+        <script>
+            let output = document.getElementById('output');
+            let input = document.querySelector('input');
+            let button = document.querySelector('button');
+
+            button.addEventListener('click', () => {
+                let response = '';
+                let testStr = input.value;
+                let emailPattern = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9])/g;
+
+                if (!(emailPattern.test(testStr))) {
+                    response += 'Invalid Email.';
+                    output.style.color = 'red';
+                } else {
+                    response += 'Valid Email.'
+                    output.style.color = 'green';
+                }
+                output.textContent = response;
+                input.value = '';
+                
+            })
+        </script>
+    </body>
+</html>

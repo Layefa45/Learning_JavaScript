@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width">
+        <title>Practice Exercise 12.4</title>
+    </head>
+    <body>
+        <h1>PRACTICE EXERCISE 12.4</h1>
+        <p>
+            Variables values can be tracked in the editor while <b>debugging.</b> <br>
+            The following exercise will demonstrate how to use the breakpoints to check a value of a variable at a certain point in the running of the script.
+        </p>
+        <p>
+            This is a simple example, but the same process can be used to find information about larger scripts at specific points during execution, or establish where a problem lie. 
+        </p>
+        
+        <script>
+            let val = 5;
+            val += adder();
+            val += adder();
+            val += adder();
+            console.log(val);
+
+            function adder() {
+                let counter = val;
+                for (let i = 0; i < val; i++ ) {
+                    counter++;
+                }
+                return counter;
+            }
+            
+        </script>
+    </body>
+</html>

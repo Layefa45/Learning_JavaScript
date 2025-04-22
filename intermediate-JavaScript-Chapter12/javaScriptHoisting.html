@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width">
+        <title>JavaScript Hoisting</title>
+    </head>
+    <body>
+        <h1>JAVASCRIPT HOISTING</h1>
+        <p>
+            Hoisting is the principle of moving declarations of variables to the top of the scope in which they are defined. <br>
+            This allows you to do things that you cannot do in many other languages.
+        </p>
+
+        <code>
+            <pre>
+    var x;
+    x = 5;
+    console.log(x); // OUTPUT: 5
+            </pre>
+        </code>
+        <p>
+            But thanks to hoisting, so does this;
+        </p>
+        <pre>
+            <code>
+    x = 5;
+    console.log(x); //OUTPUT: 5
+    var x;
+            </code>
+        </pre>
+        <p>
+            If you try to do this with 'let', you will get a 'ReferenceError'. This is why it is better to use 'let'. Because this behaviour is very hard to read. <br>
+            And sometimes very unpredictable, and you really don't need it.
+        </p>
+
+        <p>
+            The reason why this happens is that the JavaScript interpreter moves all the 'var' declarations to the top of the file before processing the file. <br>
+            This is why you get a result of 'undefined' if you use it before it has been declared. <br>
+            It was designed this way for memory allocation, but the side effects are undesirable. <br>
+            However there is a way to turn off this behaviour, using <b>strict mode.</b>
+        </p>
+
+        <script>
+            var x;
+            x = 5;
+            console.log(x);
+
+            x1 = 5;
+            console.log(x1); //OUTPUT: 5
+            var x1;
+        </script>
+    </body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Form Validator</title>
+        <style>
+            .hide {
+                display: none;
+            }
+            .error{
+                color: red;
+                font-size: 0.8em;
+                font-family: sans-serif;
+                font-style: 1.5em;
+            }
+            .input {
+                border-color: #ddd;
+                width: 400px;
+                display: block;
+                font-size: 1.5em;
+            }
+        </style>
+    </head>
+    <body>
+        <form action="#" name="myform"> Email:
+            <input type="text" name="email">
+             <span class="error hide"></span>
+            <br> PassWord:
+            <input type="password" name="password"> 
+            <span class="error hide"></span>
+            <br> UserName:
+            <input type="text" name="username" > 
+            <span class="error hide"></span>
+            <br>
+            <input type="submit" value="Sign Up" name="button">
+        </form>
+        <!-- <script>
+            let form = document.querySelector('form');
+            let inputEmail = document.querySelector('input[name = "email"]');
+            let inputPassword = document.querySelector('input[name = "password"]');
+            let inputUsername = document.querySelector('input[name = "username"]');
+
+            let classHide = document.querySelectorAll('.error');
+            let inputButton = document.querySelector('input[name="button"]');
+
+            form.addEventListener('submit', validCheck);
+
+            function validCheck(e) {
+                let objValues = {};
+                e.preventDefault();
+
+                classHide.forEach((ell) => {
+                    ell.classList.add('hide');
+                });
+
+                let emailValue = inputEmail.value;
+                let checkEmail = emailValue.match(/([a-zA-Z0-9_-.]+@[a-zA-Z0-9_-.]+\.[a-zA-Z0-9_-.]+)/g);
+                if (!(checkEmail)) {
+                    addMessage(inputEmail, 'The email addresses must contain only "." and no other special characters');
+                }
+            }
+
+           
+
+            
+            let passwordValue = inputPassword.value;
+            let checkPassword = passwordValue.match(/[a-zA-Z0-9]/g);
+            if (!(passwordValue.length >= 3 && passwordValue.length == 8)) {
+                addMessage(ele, 'Password is to be letters and numbers more than three letters', attr)
+            }
+
+            function addMessage(el, err) {
+                let holder = el.nextElementSibling;
+                holder.classList.remove('hide');
+                holder.textContent = err;
+                el.focus();
+            }
+        </script> -->
+        <!-- <script>
+            let form = document.querySelector('form');
+            let inputEmail = document.querySelector('input[name="email"]');
+            let inputPassword = document.querySelector('input[name="password"]');
+            let inputUserName = document.querySelector('input[name="username"]');
+
+            function addMessage(el, errMsg = '') {
+                let holder = el.nextElementSibling;
+                if (errMsg) {
+                    holder.classList.remove('hide');
+                    holder.textContent = errMsg;
+                    el.focus();
+                } else {
+                    holder.classList.add('hide');
+                    holder.textContent = '';
+                }
+            }
+
+            function validateEmail(email) {
+                const checkRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/g.test(email);
+
+                if (!(email)) {
+                    return 'Enter your email address.'
+                }
+
+                if (!(checkRegex)) {
+                    return "Email addresses should not contain any special character before and after '@' and should look like this 'example@gmail.com";
+                }
+
+                
+                
+                return '';
+            }
+
+            inputEmail.addEventListener('blur', () => {
+                const email = inputEmail.value;
+                const errorCheck = validateEmail(email);
+                addMessage(inputEmail, errorCheck);
+            });
+
+
+            function validatePassword(password) {
+                const hasLetter = /[a-zA-Z]/.test(password);
+                const hasNum = /[0-9]/.test(password);
+                const isValidLength = password.length >=3 && password.length <=8;
+
+                if (!(isValidLength)) {
+                    return "Password must be between 3 and 8 characters long";
+                }
+
+                if(!(hasLetter && hasNum)) {
+                    return "Password must include both letters and numbers"
+                }
+
+                return '';
+            }
+
+            inputPassword.addEventListener('blur', () => {
+                const pwd = inputPassword.value;
+                const errorCheck = validatePassword(pwd);
+                addMessage(inputPassword, errorCheck);
+            });
+
+            function validateUserName(name) {
+
+                const checks = /[a-zA-Z0-9]/.test(name);
+                const isLength = name.length >=5 && name.length <=9;
+
+                if (!(checks)) {
+                    return 'Username can only contain letters and numbers';
+                }
+
+                if (!(isLength)) {
+                    return 'Your username should be 5-9 characters long';
+                }
+
+                if (!(name)) {
+                    return 'Username cannot be empty';
+                }
+
+                return '';
+            }
+
+            inputUserName.addEventListener('blur', () => {
+               const name = inputUserName.value;
+               const check = validateUserName(name);
+               addMessage(inputUserName, check)
+                
+            });
+
+
+
+
+
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                let error = false;
+
+                const pwd = inputPassword.value;
+                const errorCheck = validatePassword(pwd);
+
+                if (errorCheck) {
+                    addMessage(inputPassword, errorCheck);
+                    error = true;
+                } else {
+                    addMessage(inputPassword);
+                    error = false;    
+                };
+                
+                const name = inputUserName.value;
+                const check = validateUserName(name);
+                
+                if (check) {
+                    addMessage(inputUserName, check);
+                    error = true;
+                } else {
+                    addMessage(inputUserName);
+                    error = false;
+                };
+
+
+                const email = inputEmail.value;
+                const checking = validateEmail(email);
+
+                if (checking) {
+                    addMessage(inputEmail, checking);
+                    
+                } else {
+                    addMessage(inputEmail);
+                    error = false;
+                }
+
+                if (error) {
+                    console.log('Form is not validated, not Submitting');
+                    alert('Form is not validated, not Submitted.');
+                } else {
+                    console.log('Form is validated, Submitting');
+                    alert('Form is validated and Submitted!');
+                }
+
+            });
+        
+        </script> -->
+   
+        <script>
+            const form = document.querySelector('form');
+            const inputEmail = document.querySelector('input[name="email"]');
+            const inputPassword = document.querySelector('input[name="password"]');
+            const inputUserName = document.querySelector('input[name="username"]');
+        
+            function addMessage(el, msg = '') {
+                const holder = el.nextElementSibling;
+                if (msg) {
+                    holder.classList.remove('hide');
+                    holder.textContent = msg;
+                    el.focus();
+                } else {
+                    holder.classList.add('hide');
+                    holder.textContent = '';
+                }
+            }
+        
+            function validateAll() {
+                let error = false;
+        
+                // Validate email
+                const email = inputEmail.value;
+                const emailValid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$/.test(email);
+                if (!email) {
+                    addMessage(inputEmail, 'Enter your email address.');
+                    error = true;
+                } else if (!emailValid) {
+                    addMessage(inputEmail, "Invalid email format. Use something like 'example@gmail.com'");
+                    error = true;
+                } else {
+                    addMessage(inputEmail);
+                }
+        
+                // Validate password
+                const pwd = inputPassword.value;
+                const hasLetter = /[a-zA-Z]/.test(pwd);
+                const hasNum = /[0-9]/.test(pwd);
+                const isValidLength = pwd.length >= 3 && pwd.length <= 8;
+        
+                if (!isValidLength) {
+                    addMessage(inputPassword, "Password must be between 3 and 8 characters");
+                    error = true;
+                } else if (!(hasLetter && hasNum)) {
+                    addMessage(inputPassword, "Password must include both letters and numbers");
+                    error = true;
+                } else {
+                    addMessage(inputPassword);
+                }
+        
+                // Validate username
+                const username = inputUserName.value;
+                const isUsernameValid = /^[a-zA-Z0-9]+$/.test(username);
+                const nameLength = username.length >= 5 && username.length <= 9;
+        
+                if (!username) {
+                    addMessage(inputUserName, "Username is required");
+                    error = true;
+                } else if (!isUsernameValid) {
+                    addMessage(inputUserName, "Username must only contain letters and numbers");
+                    error = true;
+                } else if (!nameLength) {
+                    addMessage(inputUserName, "Username should be 5-9 characters long");
+                    error = true;
+                } else {
+                    addMessage(inputUserName);
+                }
+        
+                return !error;
+            }
+        
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const isValid = validateAll();
+        
+                if (isValid) {
+                    console.log('Form is validated and submitted!');
+                    alert('Form is validated and submitted!');
+                } else {
+                    console.log('Form has errors. Not submitted.');
+                    alert('Form has errors. Fix them first.');
+                }
+            });
+        </script>
+        
+    </body>
+</html>

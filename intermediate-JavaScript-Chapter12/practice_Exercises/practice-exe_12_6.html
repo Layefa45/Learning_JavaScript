@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width">
+        <title>Practice Exercise 12.6</title>
+    </head>
+    <body>
+        <h1>PRACTICE EXERCISE 12.6</h1>
+
+        <script>
+            //let cookies = document.cookie = '';
+            console.log(document.cookie);
+            cookies("test1", "new Cookie", 30);
+            console.log(testCookie("test1"));
+            console.log(testCookie("test"));
+            //delCookie('test2');
+
+            function cookies(cookieName, cookieValue, days) {
+                if (days) {
+                    let time = new Date();
+                    time.setTime(time.getTime + (days * 24 * 60 * 60 * 1000));
+
+                    let exp = '; expires= ' + time.toUTCString();
+                    document.cookie = cookieName + "=" + cookieValue + exp + "; p";
+                    //document.cookie = cookieName + '=' + cookieValue + ";" + 
+
+                }
+            }
+
+            function testCookie(cookieName) {
+                let cookieValues = false;
+                let arr = document.cookie.split(';');
+
+                arr.forEach( str => {
+                    let cookie = str.split('=');
+                    if ( cookie[0] === cookieName ) {
+                        cookieValues = cookie[1];
+                    }
+                })
+                return cookieValues;
+                
+            }
+
+            function delCookie(cookieName) {
+                cookies(cookieName, '', -1);
+            }
+
+        </script>
+    </body>
+</html> 

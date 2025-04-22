@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" name="viewport" content="width=device-width"/>
+        <title>Practice Exercise 12.5</title>
+    </head>
+    <body>
+        <h1>PRACTICE EXERCISE 12.5</h1>
+        <p>Check the script to see the code.</p>
+
+       <script>
+        // BOOK'S CORRECT ANSWER
+        function checkError(val) {
+            try {
+                if (isNaN(val)) {
+                    throw 'The value entered is not a number.';
+                } else {
+                    console.log('Got a number.');
+                }
+            } catch (err) {
+                console.error(err);
+            } finally {
+                console.log('This is the value of the passed parameter:', val);
+            }
+            console.log(val);
+        }
+
+        console.log(checkError('%%'));
+        console.log(checkError('Tare'));
+        checkError('')
+
+        // I TRIED THIS CODE MYSELF IT'S NOT THE EXACTLY THE SAME BUT NOT MUCH DIFFERENT FROM THE BOOK'S ASSIGNMENT. I CREATED A NEW FUNCTION 'conVert' 
+            let num = '5';
+            let word = 'aman';
+            function conVert(val) {
+                let resp ='';
+                let a = val;
+                if (!(Number(a))) {
+                    resp += "The value couldn't be converted to a Number";
+                    console.log('wait');
+                } else {
+                    resp += `We tried converting the value to a number. success! ${a}`;
+                    //  THE ELSE STATEMENT DOESN'T GET EXECUTED BECAUSE THE TRY CONSOLE EXECUTES, i THING ADDING THE CONVERT FUNCTION TO THE ELSE STATEMENT IN THE TRY BLOCK
+                } 
+                
+                return resp;
+            }
+                       
+            function customError(val) {
+                try{
+                    if (isNaN(val)) {
+                        throw new TypeError('Not a number');
+
+                    } else {
+                        console.log('Got a number:', val);
+                    }
+                }  catch (error) {
+                    if (error instanceof TypeError) {
+                        console.log(error);
+                        console.log(conVert(val));
+                    }  else {
+                       console.log('Error', error);
+                    }
+                }
+            }
+            
+            console.log(customError(word));
+            console.log(customError(num));
+            console.log(customError('5')); 
+        </script> 
+    </body>
+</html>

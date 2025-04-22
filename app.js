@@ -1640,3 +1640,13 @@ console.log(element);
 // Using console.dir()
 console.dir(element);
 // Output: An interactive, expandable object with properties like id, className, innerHTML, style, etc.
+
+
+function randDescription() {
+    let askSome = prompt('Enter a number for a random wish?: ')
+    let arrWords = ['Hope', 'Love', 'Joy', 'Happiness', 'Success', 'Rejoice'];
+    let randomNum = Math.floor(Math.random() *arrWords.length);
+    console.log('Your wish:', arrWords[randomNum]);
+
+}
+randDescription();
