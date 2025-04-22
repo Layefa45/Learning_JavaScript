@@ -115,7 +115,7 @@ setTimeout(() => {
 }, 0);
 console.log("c");
 
-let people = ['laurence', 'Mike', 'Larry', 'Kim', 'Joanne', 'Laurence', 'Mike'];
+let people = ['Laurence', 'Mike', 'Larry', 'Kim', 'Joanne', 'Laurence', 'Mike'];
 
 let newArr = people.filter((value, index, array) => {
     console.log(value, index, array.indexOf(value));
