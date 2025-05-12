@@ -122,3 +122,37 @@ let newArr = people.filter((value, index, array) => {
     return array.indexOf(value) === index;
 });
 console.log(newArr)
+
+
+let words = 'thIs will be capiTalized for each word';
+
+function mainString (a) {
+    let transfr = a.toLowerCase();
+    let empArr = [];
+    transfr = transfr.split(' ');
+    transfr.forEach((e) => {
+        empArr.push(e.charAt(0).toUpperCase() + e.slice(1))});
+    return empArr.join(' ');
+ }
+console.log(mainString(words));
+
+
+function genRanNum(min, max) {
+    console.log('Current value of min:', min, 'Current value of max:', max);
+    if (min > max ) {
+        return `We've generated ${min} times`;
+    }
+    let nums = Math.floor(Math.random() * max);
+    console.log('Generated Value', nums);
+    return genRanNum(min+1, max);
+}
+// console.log(genRanNum(0, 100));
+genRanNum(0,100);
+
+function ranNum(min, max) {
+    return Math.floor(Math.random() * (max-min + 1) + min);
+}
+ranNum(0, 50);
+for(let i = 0; i < 100; i++) {
+    console.log('We generated:', ranNum(0, 50));
+}
