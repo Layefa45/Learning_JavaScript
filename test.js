@@ -156,3 +156,38 @@ ranNum(0, 50);
 for(let i = 0; i < 100; i++) {
     console.log('We generated:', ranNum(0, 50));
 }
+
+let wordValue = 'Tamaratarelayefa';
+let wordValueLength = wordValue.length;
+
+function mrScramble(a) {
+    let wordValue = a;
+    let tempString = '';
+
+    for (let i = 0; i < wordValueLength; i++ ) {
+        let random = Math.floor(Math.random() * wordValue.length);
+        let randomChar = wordValue.charAt(random);
+        tempString += randomChar;
+        console.log('Temp String:', tempString, 'Word Value:', wordValue);
+        wordValue = wordValue.substring(0, random) + wordValue.substring(random + 1);
+    }
+    return tempString;
+}
+console.log(mrScramble(wordValue));
+
+let str = 'JavaScript';
+function scramble(val) {
+    let max = val.length;
+    let temp = '';
+
+    for (let i = 0; i < max; i++ ) {
+        console.log('Length of word remaing:', val.length);
+        let index = Math.floor(Math.random() * val.length);
+        temp += val[index];
+        console.log('Temp String:', temp);
+        val = val.substr(0, index) + val.substr(index + 1);
+        console.log('Remaining value:', val);
+    }
+    return temp;
+}
+console.log(scramble(wordValue));
