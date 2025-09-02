@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice Exercise 14.6</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+      /*height: 300px;
+      width: 400px;*/
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canVas" width="400" height="300"></canvas>
+  <script>
+    let canvas = document.getElementById('canVas');
+    let ctx = canvas.getContext('2d');
+    
+    let position = {
+      xPosition: canvas.width / 2,
+      yPosition: canvas.height / 2,
+      
+      xDirectionSpeed: 1,
+      yDirectionSpeed: 1,
+    }
+    let ballSize = 25;
+    console.log(position.xPosition, position.yPosition);
+    
+    function drawBall() {
+      
+      
+      ctx.beginPath();
+      ctx.fillStyle = 'red';
+      ctx.arc(position.xPosition, position.yPosition, ballSize, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.closePath();
+      
+      
+    
+    }
+    //drawBall();
+    
+    function moveBall(ball) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      position.xPosition = position.xPosition + position.xDirectionSpeed;
+      
+      position.yPosition = position.yPosition + position.yDirectionSpeed;
+      
+      if (position.xPosition - ballSize <= 0) {
+        position.xDirectionSpeed *= -1;
+      }
+      if (position.xPosition + ballSize >= canvas.width) {
+        position.xDirectionSpeed *= -1;
+      }
+      
+      if (position.yPosition + ballSize >= canvas.height) {
+        position.yDirectionSpeed *= -1;
+      }
+      if (position.yPosition - ballSize <= 0) {
+        position.yDirectionSpeed *= -1;
+      }
+      ball();
+      
+      
+    }
+    setInterval(()=> {
+      moveBall(drawBall)
+    }, 10) ;
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice Exercise 14.7</title>
+  <style>
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="controls">
+    <button class="clear">Clear</button> <span>Color
+      <input type="color" value="#ffff00" id="penColor">
+    </span>
+    <input type="range" value="10" min="1" max="20" id="penSize">
+  </div>
+  <br />
+  <canvas id="canVas">
+    Not Supported by browser
+  </canvas>
+  
+  
+  <script>
+    let divControls = document.querySelector('.controls');
+    let btnClear = document.querySelector('.clear');
+    let inputColor = document.getElementById('penColor');
+    let inputSize = document.getElementById('penSize');
+    
+    btnClear.addEventListener('click', clear);
+    
+    function clear() {
+      
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice Exercise 14.4</title>
+  <style>
+    .canV{
+      height: 640px;
+      width: 640px;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canV" class="canV">
+    Not Supported 
+  </canvas>
+  
+  <script>
+    let canvas = document.getElementById('canV');
+    let ctx = canvas.getContext('2d');
+    
+    let word = 'Hello World';
+    
+    ctx.fillStyle = 'blue';
+    ctx.font = '24px Arial';
+    //ctx.textAlign = 'left';
+    ctx.fillText(word, 10, 35);
+    
+    for (let i = 1; i < 11; i++) {
+      ctx.font = '8px monospace'
+      ctx.fillStyle = 'red';
+      ctx.fillText('counter '+ i, 10, 50 +(i * 10));
+    }
+  </script>
+</body>
+
+</html>
