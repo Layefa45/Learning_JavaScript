@@ -6,8 +6,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Practice Exercise 14.7</title>
   <style>
+    .confirmBtn {
+      display: none;
+      border: 1px solid black;
+      width: 200px;
+      background-color: lightgrey;
+      margin: 10px;
+      text-align: center;
+      padding: 10px;
+    }
+    .confirmBtn p {
+      margin-top: 0px;
+    }
+    
+    .confirmBtn .noBtn {
+      margin: 10px;
+      ;
+    }
     canvas {
       border: 1px solid black;
+      
     }
   </style>
 </head>
@@ -18,6 +36,13 @@
       <input type="color" value="#ffff00" id="penColor">
     </span>
     <input type="range" value="10" min="1" max="20" id="penSize">
+
+    <div class="confirmBtn">
+      <p> Do you want to clear canvas</p>
+      <button class="yesBtn">Yes</button>
+      <button class="noBtn">No</button>
+    </div>
+    
   </div>
   <br />
   <canvas id="canVas">
@@ -30,12 +55,80 @@
     let btnClear = document.querySelector('.clear');
     let inputColor = document.getElementById('penColor');
     let inputSize = document.getElementById('penSize');
+    let confirmBtn = document.querySelector('.confirmBtn');
+    let yesBtn = document.querySelector('.yesBtn');
+    let noBtn = document.querySelector('.noBtn');
     
-    btnClear.addEventListener('click', clear);
+    let canvas = document.getElementById('canVas');
+    let ctx = canvas.getContext('2d');
     
-    function clear() {
+    let position = {x : 0, y: 0};
+   
+   //THIS CODE IS COMMENTED OUT DUE TO SPCK EDITOR NOT FUNCTIONAL WITH CONFIRM()
+   
+   // btnClear.addEventListener('click', clear);
+    
+    /*function clear(e) {
+      console.log('cleared', e.target, e);
       
+      let response = confirm('Do you want to clear the canvas?:');
+      
+      if (response) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      
+    }*/
+    
+    btnClear.addEventListener('click', () => {
+      confirmBtn.style.display = 'block';
+    })
+    
+    yesBtn.addEventListener('click', () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+     // confirmBtn.style.display = confirmBtn.style.display === 'block' ?  'none' : 'block';
+     confirmBtn.style.display = 'none';
+    });
+    
+    noBtn.addEventListener('click', () => {
+      //confirmBtn.style.display = confirmBtn.style.display === 'block'? 'none' : 'block';
+      confirmBtn.style.display = 'none';
+    })
+    
+    // EVENT LISTENERS 
+    canvas.addEventListener('mousemove', drawLine);
+    canvas.addEventListener('mousedown', setPosition);
+    canvas.addEventListener('mouseenter', setPosition);
+    
+    //EVENT LISTENER FOR MOBILE
+    canvas.addEventListener('touchstart', setPosition);
+    canvas.addEventListener('touchmove', drawLine);
+    
+    function setPosition (e) {
+      let rect = canvas.getBoundingClientRect();
+      
+      if (e.touches) { //touch event
+        position.x = e.touches[0].clientX - rect.left;
+        position.y = e.touches[0].clientY - rect.top;
+      } else { //mouse event
+        position.x = e.clientX - rect.left;
+        position.y = e.clientY - rect.top;
+      }
     }
+    
+    function drawLine(e) {
+      if (e.buttons !== 1 && !e.touches) return;
+      // mouse: only left button, touch: always draw.
+      
+      ctx.beginPath();
+      ctx.moveTo(position.x, position.y);
+      setPosition(e);
+      ctx.lineTo(position.x, position.y);
+      ctx.lineWidth = inputSize.value;
+      ctx.lineCap = 'round';
+      ctx.strokeStyle = inputColor.value;
+      ctx.stroke();
+    }
+    
   </script>
 </body>
 

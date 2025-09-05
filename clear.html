@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+   <style>
+    #confirmBox {
+      display: none;
+      border: 1px solid #333;
+      padding: 10px;
+      background: #f0f0f0;
+      width: 200px;
+      text-align: center;
+      margin-top: 10px;
+    }
+    #confirmBox button {
+      margin: 5px;
+    }
+    canvas {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+
+ 
+</head>
+<body>
+
+<canvas id="canvas" width="300" height="200"></canvas>
+<br>
+<button id="clearBtn">Clear</button>
+
+<div id="confirmBox">
+  <p>Do you want to clear the canvas?</p>
+  <button id="yesBtn">Yes</button>
+  <button id="noBtn">No</button>
+</div>
+
+<script>
+const canvas = document.getElementById('canvas');
+const ctx = canvas.getContext('2d');
+const clearBtn = document.getElementById('clearBtn');
+const confirmBox = document.getElementById('confirmBox');
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+
+// Draw something simple for demo
+ctx.fillStyle = "blue";
+ctx.fillRect(50, 50, 100, 100);
+
+clearBtn.addEventListener('click', () => {
+  // Show custom confirm box
+  confirmBox.style.display = 'block';
+});
+
+// Handle Yes/No
+yesBtn.addEventListener('click', () => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  confirmBox.style.display = 'none';
+});
+
+noBtn.addEventListener('click', () => {
+  confirmBox.style.display = 'none';
+});
+</script>
+
+</body>
+
+</html>
