@@ -49,6 +49,10 @@
     Not Supported by browser
   </canvas>
   
+  <input type="button" name="save" id="save" value="save" />
+  <br />
+  
+  <img src="" alt="imgSaver" id="holder" height="200" width="200">
   
   <script>
     let divControls = document.querySelector('.controls');
@@ -128,6 +132,15 @@
       ctx.strokeStyle = inputColor.value;
       ctx.stroke();
     }
+    
+    document.getElementById('save').addEventListener('click', () => {
+      let dataUrl = canvas.toDataURL();
+      document.getElementById('holder').src = dataUrl;
+
+      
+    })
+    
+    
     
   </script>
 </body>

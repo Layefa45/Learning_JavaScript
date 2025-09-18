@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CountDown Clock</title>
+  <style>
+    :root{
+      --bg: #0b64d6;
+      --unit-bg: #0b0b0b;
+      --text: #fff;
+      --muted: #ddd;
+    }
+
+    body{
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      display:flex;
+      justify-content:center;
+      padding:24px;
+      background: #f5f7fb;
+    }
+
+    .clock-wrap{
+      text-align:center;
+      max-width:480px;
+      width:100%;
+    }
+
+    input {
+      padding: 12px 14px;
+      margin: 12px 0 20px 0;
+      font-size: 1rem;
+      width:100%;
+      box-sizing:border-box;
+    }
+
+    .clock{
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 18px;
+      border-radius: 10px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap: 8px;
+      width:100%;
+      box-sizing:border-box;
+    }
+
+    /* each column (unit) */
+    .unit{
+      background: var(--unit-bg);
+      padding: 10px 12px;
+      border-radius: 8px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      min-width:64px;
+      position:relative;
+    }
+
+    .unit .value{
+      font-size: 1.6rem;
+      font-weight:700;
+      line-height:1;
+      color:var(--text);
+      min-width:48px;
+      text-align:center;
+    }
+
+    .unit .label{
+      font-size:0.75rem;
+      margin-top:6px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:0.06em;
+    }
+
+    /* colon separator after every unit except the last one */
+    .unit:not(:last-child)::after{
+      content: ":";
+      color: var(--text);
+      font-weight:700;
+      font-size: 1.6rem;
+      position: absolute;
+      right: -14px;         /* nudges the colon outside the box */
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    /* mobile responsiveness: stack when narrow */
+    @media (max-width:420px){
+      .clock{
+        gap:6px;
+        padding:12px;
+      }
+      .unit{
+        min-width:48px;
+        padding:8px 10px;
+      }
+      .unit:not(:last-child)::after{
+        right:-10px;
+        font-size:1.4rem;
+      }
+    }
+
+    #message{
+      margin-top:12px;
+      font-weight:600;
+      color:#0b64d6;
+    }
+  </style>
+</head>
+<body>
+  <div class="clock-wrap">
+    <input type="date" name="endDate" id="endDate" />
+
+    <div class="clock">
+      <div class="unit">
+        <span class="value days">00</span>
+        <span class="label">Days</span>
+      </div>
+
+      <div class="unit">
+        <span class="value hours">00</span>
+        <span class="label">Hours</span>
+      </div>
+
+      <div class="unit">
+        <span class="value minutes">00</span>
+        <span class="label">Minutes</span>
+      </div>
+
+      <div class="unit">
+        <span class="value seconds">00</span>
+        <span class="label">Seconds</span>
+      </div>
+    </div>
+
+    <div id="message"></div>
+  </div>
+
+  <script>
+    let input = document.querySelector('#endDate');
+    let clock = document.querySelector('.clock');
+    let days = document.querySelector('.days');
+    let hours = document.querySelector('.hours');
+    let minutes = document.querySelector('.minutes');
+    let seconds = document.querySelector('.seconds');
+
+    let message = document.querySelector('#message');
+
+    let timeInterval;
+    let counterActive = false;
+
+    input.addEventListener('change', () => {
+      localStorage.setItem('endDate', input.value);
+      reset();
+    });
+
+    if (localStorage.getItem('endDate')) {
+      input.value = localStorage.getItem('endDate');
+      startCountdown();
+    }
+
+    function reset() {
+      clearInterval(timeInterval);
+      message.textContent = ''; // clear any old message
+      startCountdown();
+    }
+
+    function formatNumber(num) {
+      // keep '00' for negative/NaN and pad single digits
+      if (isNaN(num) || num < 0) return '00';
+      return num < 10 ? '0' + num : String(num);
+    }
+
+    function startCountdown () {
+      let countDown = input.value;
+      let targetDate = new Date(countDown);
+      
+      // Immediately update once (avoid waiting 1s)
+      updateClockValues(targetDate);
+
+      // clear old interval to be safe, then create a new one
+      clearInterval(timeInterval);
+      timeInterval = setInterval(() => {
+        updateClockValues(targetDate);
+      }, 1000);
+    }
+
+    function updateClockValues(targetDate){
+      let todayDate = new Date();
+      let timeLeft = targetDate - todayDate;
+
+      let daysLeft = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      let hoursLeft = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let minutesLeft = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      let secondsLeft = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      // update DOM
+      days.textContent = formatNumber(daysLeft);
+      hours.textContent = formatNumber(hoursLeft);
+      minutes.textContent = formatNumber(minutesLeft);
+      seconds.textContent = formatNumber(secondsLeft);
+
+      if (timeLeft <= 0) {
+        clearInterval(timeInterval);
+        days.textContent = '00';
+        hours.textContent = '00';
+        minutes.textContent = '00';
+        seconds.textContent = '00';
+        message.textContent = '🎉 Countdown Finished!';
+      }
+    }
+  </script>
+</body>
+</html>
