@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Online Paint App</title>
+  <style>
+    #canvas {
+      border: 1px solid black;
+      touch-action: none; /* prevents scrolling while drawing */
+    }
+    .controls {
+      margin-top: 10px;
+    }
+    .output img {
+      max-width: 100px;
+      margin: 5px;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Canvas -->
+  <canvas id="canvas" width="600" height="400"></canvas>
+
+  <!-- Controls -->
+  <div class="controls">
+    <button class="save">Save</button>
+    <button class="clear">Clear</button>
+    <span>
+      Color:
+      <input type="color" id="penColor" value="#ffff00">
+    </span>
+    <span>
+      Width:
+      <input type="range" id="penWidth" min="1" max="20" value="5">
+    </span>
+  </div>
+
+  <!-- Saved images -->
+  <div class="output"></div>
+
+  <script>
+    const canvas = document.querySelector("#canvas");
+    const ctx = canvas.getContext("2d");
+    const penColor = document.querySelector("#penColor");
+    const penWidth = document.querySelector("#penWidth");
+    const btnSave = document.querySelector(".save");
+    const btnClear = document.querySelector(".clear");
+    const output = document.querySelector(".output");
+
+    const mLoc = {
+      draw: false,
+      x: 0,
+      y: 0,
+      lastX: 0,
+      lastY: 0
+    };
+
+    function getPos(e) {
+      let rect = canvas.getBoundingClientRect();
+      if (e.touches) { // touch event
+        return {
+          x: e.touches[0].clientX - rect.left,
+          y: e.touches[0].clientY - rect.top
+        };
+      } else { // mouse event
+        return {
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        };
+      }
+    }
+
+    // Mouse events
+    canvas.addEventListener("mousedown", (e) => {
+      mLoc.draw = true;
+      let pos = getPos(e);
+      mLoc.x = pos.x;
+      mLoc.y = pos.y;
+    });
+
+    canvas.addEventListener("mousemove", (e) => {
+      if (!mLoc.draw) return;
+      mLoc.lastX = mLoc.x;
+      mLoc.lastY = mLoc.y;
+      let pos = getPos(e);
+      mLoc.x = pos.x;
+      mLoc.y = pos.y;
+      draw();
+    });
+
+    canvas.addEventListener("mouseup", () => mLoc.draw = false);
+    canvas.addEventListener("mouseout", () => mLoc.draw = false);
+
+    // Touch events
+    canvas.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      mLoc.draw = true;
+      let pos = getPos(e);
+      mLoc.x = pos.x;
+      mLoc.y = pos.y;
+    });
+
+    canvas.addEventListener("touchmove", (e) => {
+      e.preventDefault();
+      if (!mLoc.draw) return;
+      mLoc.lastX = mLoc.x;
+      mLoc.lastY = mLoc.y;
+      let pos = getPos(e);
+      mLoc.x = pos.x;
+      mLoc.y = pos.y;
+      draw();
+    });
+
+    canvas.addEventListener("touchend", () => mLoc.draw = false);
+
+    function saveImg() {
+      const dataURL = canvas.toDataURL("image/png");
+      const img = document.createElement("img");
+      img.src = dataURL;
+      output.prepend(img);
+
+      const link = document.createElement("a");
+      let fileName = Math.random().toString(16).substr(-8) + ".png";
+      link.setAttribute("download", fileName);
+      link.href = dataURL;
+      link.click();
+    }
+
+    function clearCanvas() {
+      if (confirm("Clear canvas?")) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+
+    function draw() {
+      ctx.beginPath();
+      ctx.moveTo(mLoc.lastX, mLoc.lastY);
+      ctx.lineTo(mLoc.x, mLoc.y);
+      ctx.strokeStyle = penColor.value;
+      ctx.lineWidth = penWidth.value;
+      ctx.lineCap = "round";
+      ctx.stroke();
+      ctx.closePath();
+    }
+
+    btnSave.addEventListener("click", saveImg);
+    btnClear.addEventListener("click", clearCanvas);
+  </script>
+</body>
+
+</html>

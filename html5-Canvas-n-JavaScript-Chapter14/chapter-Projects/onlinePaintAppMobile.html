@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Online Paint App</title>
+  <style>
+    #canvas {
+      border: 1px solid black;
+      touch-action: none; /* prevent scrolling while drawing */
+    }
+  </style>
+</head>
+<body>
+  <!-- Canvas -->
+  <canvas id="canvas" width="600" height="400"></canvas>
+
+  <!-- Controls -->
+  <div>
+    <button class="save">Save</button>
+    <button class="clear">Clear</button>
+    <span>
+      Color:
+      <input type="color" id="penColor" value="#ffff00">
+    </span>
+    <span>
+      Width:
+      <input type="range" id="penWidth" min="1" max="20" value="5">
+    </span>
+  </div>
+
+  <script>
+    // STEP 1: Setup canvas and context
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+
+    // STEP 2: Get controls
+    let saveBtn = document.querySelector('.save');
+    let clearBtn = document.querySelector('.clear');
+    let colorInput = document.getElementById('penColor');
+    let rangeInput = document.getElementById('penWidth');
+
+    // STEP 3: Track position + drawing state
+    let position = { x: 0, y: 0 };
+    let drawing = false;
+
+    function updatePosition(e) {
+      if (e.touches) { // mobile
+        position.x = e.touches[0].clientX - canvas.offsetLeft;
+        position.y = e.touches[0].clientY - canvas.offsetTop;
+      } else { // desktop
+        position.x = e.clientX - canvas.offsetLeft;
+        position.y = e.clientY - canvas.offsetTop;
+      }
+    }
+
+    // STEP 4: Draw function
+    function draw(e) {
+      if (!drawing) return;
+
+      ctx.beginPath();
+      ctx.moveTo(position.x, position.y); // start old
+      updatePosition(e);                  // update new
+      ctx.lineTo(position.x, position.y); // draw new
+      ctx.strokeStyle = colorInput.value;
+      ctx.lineWidth = rangeInput.value;
+      ctx.lineCap = "round";
+      ctx.stroke();
+    }
+
+    // STEP 5: Desktop mouse events
+    canvas.addEventListener('mousedown', (e) => {
+      drawing = true;
+      updatePosition(e);
+    });
+    canvas.addEventListener('mouseup', () => { drawing = false; });
+    canvas.addEventListener('mouseout', () => { drawing = false; });
+    canvas.addEventListener('mousemove', draw);
+
+    // STEP 6: Mobile touch events
+    canvas.addEventListener('touchstart', (e) => {
+      drawing = true;
+      updatePosition(e);
+    });
+    canvas.addEventListener('touchend', () => { drawing = false; });
+    canvas.addEventListener('touchcancel', () => { drawing = false; });
+    canvas.addEventListener('touchmove', (e) => {
+      e.preventDefault(); // stop scrolling while drawing
+      draw(e);
+    });
+
+    // STEP 7: Clear canvas
+    clearBtn.addEventListener('click', () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+
+    // STEP 8: Save canvas (desktop = download, mobile = open in new tab)
+    saveBtn.addEventListener('click', () => {
+      let dataURL = canvas.toDataURL("image/png");
+
+      if (/Mobi|Android/i.test(navigator.userAgent)) {
+        // Mobile → open in new tab, then long-press to save
+        window.open(dataURL, "_blank");
+      } else {
+        // Desktop → direct download
+        let link = document.createElement('a');
+        link.href = dataURL;
+        link.download = "drawing.png";
+        link.click();
+      }
+    });
+  </script>
+</body>
+</html>

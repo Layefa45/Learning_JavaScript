@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/underscore@1.13.1/underscore-min.js"></script>
+  <title>UnderScore Library</title>
+</head>
+
+<body>
+  <div id="output">
+    
+  </div>
+  <script type="text/javascript" charset="utf-8">
+    _.each([1, 2, 3], function(num) {
+      alert(num);
+      console.log(num);
+    });
+    
+    _.each([1, 2, 3], function(num) {
+      document.getElementById("output").innerHTML += num + "<br>";
+    });
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Online CDN link -->
+  
+  <script src="https://d3.org/d3.v7.min.js"></script>
+  
+  <!-- Local Offline File -->
+  
+  <script src="d3@7.6.1.min.js"></script>
+  <style type="text/css" media="all">
+    svg {
+      background-color: lightgrey;
+    }
+  </style>
+  <title>Data Driven Document</title>
+</head>
+
+<body>
+  <svg id="drawing-area" height="100" width="500">
+  </svg>
+  
+  <script type="text/javascript" charset="utf-8">
+    let svg = d3.select('#drawing-area');
+    svg.append('circle')
+       .attr('cx', 100)
+       .attr('cy', 50)
+       .attr('r', 20)
+       .style('fill', 'red');
+       
+    svg.append('circle')
+       .attr('cx', 200)
+       .attr('cy', 20)
+       .attr('r', 20)
+       .style('fill', 'blue');
+       
+    svg.append('circle')
+        .attr('cx', 300)
+        .attr('cy', 70)
+        .attr('r', 20)
+        .style('fill', 'green')
+  </script>
+</body>
+
+</html>

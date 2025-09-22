@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- Use local jQuery file Offline-->
+  <script src="jquery-3.6.0.min.js"></script>
+  
+  <!-- CDN link Online -->
+  
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+  
+  <title>JQuery Library</title>
+</head>
+
+<body>
+  <p>Let's play a game!</p>
+  <p>Of hide and seek...</p>
+  <p class="easy">I'm easy to find!</p>
+  <button id="hidebutton">Great Idea</button>
+  <button id="revealbutton">Found You!</button>
+  
+  <script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+      $('#hidebutton').click(function () {
+        $('p').hide(); //hides all paragraph
+      });
+      $('#revealbutton').click(function () {
+        $('.easy').show();
+      });
+    });
+  </script>
+</body>
+
+</html>

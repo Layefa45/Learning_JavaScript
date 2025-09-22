@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>SVG with jQuery</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+  <svg width="200" height="200">
+    <circle id="myCircle" cx="100" cy="100" r="80" fill="lightblue" stroke="blue" stroke-width="4" />
+  </svg>
+
+  <button id="changeColor">Change Color</button>
+
+  <script>
+    $('#changeColor').click(function() {
+      $('#myCircle').attr('fill', 'orange');
+    });
+  </script>
+</body>
+</html>
