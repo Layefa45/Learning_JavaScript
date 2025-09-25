@@ -1,0 +1,20 @@
+{
+  "people": [
+    
+  {
+      "name": "Jenny",
+      "age": "24",
+      "status": "Single"
+  },
+  {
+      "name": "Lorraine",
+      "age": "26",
+      "status": "Married"
+    },
+    {
+      "name": "Best",
+      "age": "19",
+      "status": "Single"
+    }
+  ]
+}

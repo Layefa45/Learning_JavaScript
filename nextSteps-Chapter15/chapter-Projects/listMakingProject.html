@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>List Making Project</title>
+</head>
+
+<body>
+  <label for="itemAdded">Enter item to place on the list</label>
+  <br />
+  <br />
+  <input type="text" name="itemAdded" id="itemAdded"  placeholder="Enter Item"/>
+  <button type="submit">Add Item To List</button>
+  
+  <div id="output"></div>
+  
+  <script type="text/javascript" charset="utf-8">
+  
+    let url = 'listItem.json';
+    let myList = [];
+    
+    let input = document.querySelector('input');
+    let addBtn = document.querySelector('button');
+    let output = document.querySelector('#output');
+    
+  
+  
+    let listContainer = document.createElement('ol');
+    output.append(listContainer);
+    addBtn.addEventListener('click', addToList);
+  
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      if (localStorage.getItem('listItem')) {
+        let saved = JSON.parse(localStorage.getItem('listItem')) || [];
+        myList = saved;
+         saved.forEach(obj => maker(obj.item));
+      } else {
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            myList = data;
+            myList.forEach(obj => maker(obj.item));
+            saveToLocalStorage('listItem', myList);
+            })
+          .catch(err => console.error("Error loading JSON:", err));
+      }
+    });
+
+    function addToList() {
+      if(input.value.length >= 3) {
+        let obj = {item: input.value};
+        myList.push(obj);
+        maker(obj.item);
+        saveToLocalStorage('listItem', myList);
+        input.value = '';
+        
+        
+        console.log('inside function input value', input.value);
+        console.log('obj',obj);
+        console.log('myList',myList);
+        
+      }
+    }
+    console.log('inputValue outside function', input.value);
+    
+    function maker(item) {
+      let listEl = document.createElement('li');
+      listEl.textContent = item;
+      listContainer.appendChild(listEl);
+    }
+    
+    function saveToLocalStorage (name, itemSaved) {
+      localStorage.setItem(name, JSON.stringify(itemSaved));
+    }
+  </script>
+</body>
+
+</html>

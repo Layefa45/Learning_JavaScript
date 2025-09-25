@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!--<script type="text/javascript" charset="utf-8" src="https://cdn.jsdelivr.net/npm/vue">-->
+  
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  
+  </script>
+  <title>Vue Framework</title>
+</head>
+<body>
+  <div id="app">
+    <p v-if="!hide">
+      Let's play hide and seek. <br />
+      Go to the console and type: <br />
+      obj.hide= true <br />
+    </p>
+  </div>
+  
+  <div id="custom-component">
+    <maaike>
+      
+    </maaike>
+  </div>
+  
+  <script type="text/javascript" charset="utf-8">
+   //CHATGPT CODE WITH V3 THE BOOKS WAS WITH VUE2
+   /* let obj =  Vue.createApp ( {
+      data () {
+        return {
+          hide:false
+        }
+      }
+    }).mount('#app'); */
+    
+    //BOOK EXAMPLE 
+    //The original book link didn't work due to it being vue2 
+    // It only worked when I updated it with vue3 method of creating objects
+    // The second script link is updated to work only for vue2.
+    
+    let obj2 = new Vue({
+      el: "#app",
+      data: {
+        hide: false,
+      },
+    });
+    
+    // CUSTOM COMPONENT CODE
+    
+    Vue.component('maaike', {
+      template:'<p> Maaike says: good job! </p>'
+    });
+    new Vue({el: '#custom-component'});
+  </script>
+</body>
+</html>

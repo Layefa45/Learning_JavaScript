@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  <script type="text/javascript" charset="utf-8">
+    let url = 'people.json';
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        data.forEach((id) => {
+          console.log(`First Name: ${id.first}, Last Name: ${id.last}, and she studies ${id.topic}`);
+        })
+      })
+  </script>
+</body>
+
+</html>

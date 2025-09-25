@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>List JSON</title>
+</head>
+<body>
+  <script type="text/javascript" charset="utf-8">
+    let url = 'list.json';
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        data.forEach((pp) => {
+          console.log(pp);
+          console.log(`${pp.name} is ${pp.age} and is ${pp.status}.`);
+        });
+        console.log('next');
+    })
+    
+    let url2 = 'list2.json';
+
+fetch(url2)
+  .then(response => response.json())
+  .then(data => {
+    // Get the first key name (e.g., "people")
+    let firstKey = Object.keys(data)[0];
+    
+    // Access that property dynamically
+    let items = data[firstKey];
+    
+    items.forEach((item, index) => {
+      console.log("Item", index, item);
+    });
+  })
+  .catch(error => console.error('Error:', error));
+      
+  </script> 
+</body>
+</html>
