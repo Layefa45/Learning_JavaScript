@@ -21,7 +21,7 @@
     let url = 'listItem.json';
     let myList = [];
     
-    let input = document.querySelector('input');
+    let input = document.querySelector('#itemAdded');
     let addBtn = document.querySelector('button');
     let output = document.querySelector('#output');
     
@@ -36,7 +36,7 @@
       if (localStorage.getItem('listItem')) {
         let saved = JSON.parse(localStorage.getItem('listItem')) || [];
         myList = saved;
-         saved.forEach(obj => maker(obj.item));
+        saved.forEach(obj => maker(obj.item));
       } else {
         fetch(url)
           .then(response => response.json())
